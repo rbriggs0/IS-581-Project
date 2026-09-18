@@ -57,28 +57,46 @@
     "id": "yamaha-fg800",
     "name": "FG800",
     "brand": "Yamaha",
-    "styles": ["folk", "country"],
+    "styles": ["folk", "country", "rock", "blues"],
     "type": "acoustic",
     "priceBand": "$",
-    "blurb": "Reliable dreadnought volume for folk strummers and country songwriting."
+    "blurb": "Reliable dreadnought volume for folk, singer-songwriter rock, and bluesy acoustic sessions."
   },
   {
     "id": "taylor-114ce",
     "name": "114ce",
     "brand": "Taylor",
-    "styles": ["folk", "country", "jazz"],
+    "styles": ["folk", "country", "jazz", "blues"],
     "type": "acoustic",
     "priceBand": "$$$",
-    "blurb": "Balanced acoustic clarity that flatters folk, country, and fingerstyle jazz."
+    "blurb": "Balanced acoustic clarity that flatters folk, country, blues fingerstyle, and jazz-leaning acoustics."
   },
   {
     "id": "martin-d28",
     "name": "D-28",
     "brand": "Martin",
-    "styles": ["folk", "country"],
+    "styles": ["folk", "country", "rock", "blues"],
     "type": "acoustic",
     "priceBand": "$$$",
-    "blurb": "Deep dreadnought projection for classic folk and country acoustic tones."
+    "blurb": "Deep dreadnought projection for folk, country, classic rock acoustics, and blues."
+  },
+  {
+    "id": "epiphone-hummingbird",
+    "name": "Hummingbird",
+    "brand": "Epiphone",
+    "styles": ["rock", "folk", "country"],
+    "type": "acoustic",
+    "priceBand": "$$",
+    "blurb": "Square-shoulder acoustic punch often used for rock rhythm and folk/country songwriting."
+  },
+  {
+    "id": "recording-king-rros-7",
+    "name": "Dirty 30s Resonator",
+    "brand": "Recording King",
+    "styles": ["blues", "folk", "country"],
+    "type": "acoustic",
+    "priceBand": "$$",
+    "blurb": "Metallic resonator bite made for blues slide and rootsy folk/country textures."
   },
   {
     "id": "gretsch-g2622",
@@ -102,10 +120,10 @@
     "id": "fender-player-tele",
     "name": "Player Telecaster",
     "brand": "Fender",
-    "styles": ["country", "rock", "blues"],
+    "styles": ["country", "rock", "blues", "folk"],
     "type": "electric",
     "priceBand": "$$",
-    "blurb": "Twangy snap that defines country, with enough bite for rock and blues."
+    "blurb": "Twangy snap for country and folk-rock, with enough bite for rock and blues."
   },
   {
     "id": "gretsch-g5420t",
@@ -129,10 +147,19 @@
     "id": "seagull-s6",
     "name": "S6 Original",
     "brand": "Seagull",
-    "styles": ["folk"],
+    "styles": ["folk", "blues"],
     "type": "acoustic",
     "priceBand": "$$",
-    "blurb": "Warm Canadian cedar top that rewards folk fingerpicking and campfire strums."
+    "blurb": "Warm Canadian cedar top that rewards folk fingerpicking and intimate blues acoustics."
+  },
+  {
+    "id": "fender-acoustasonic-player",
+    "name": "Acoustasonic Player Telecaster",
+    "brand": "Fender",
+    "styles": ["folk", "rock", "country", "blues"],
+    "type": "electric",
+    "priceBand": "$$$",
+    "blurb": "Hybrid electric platform for folk and singer-songwriter tones with rock and blues flexibility."
   },
   {
     "id": "prs-se-custom24",
@@ -142,5 +169,14 @@
     "type": "electric",
     "priceBand": "$$",
     "blurb": "Coil-splittable versatility spanning rock crunch, metal rhythm, and cleaner jazz lines."
+  },
+  {
+    "id": "yamaha-cg122ms",
+    "name": "CG122MS",
+    "brand": "Yamaha",
+    "styles": ["jazz", "folk"],
+    "type": "acoustic",
+    "priceBand": "$",
+    "blurb": "Nylon-string warmth suited to jazz chord work and softer folk fingerstyle."
   }
 ]
