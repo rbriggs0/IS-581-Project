@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Find my sound — FindYourSound</title>
-  <meta name="description" content="Pick your music style and get matched with pre-made guitars that fit your sound.">
+  <meta name="description" content="Pick your music style and guitar type to get matched with pre-made guitars.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Source+Sans+3:wght@400;500;600&display=swap" rel="stylesheet">
@@ -22,7 +22,7 @@
     <div class="form-panel">
       <p class="brand-mark">FindYourSound</p>
       <h1>Find my sound</h1>
-      <p class="form-intro">One question for now: pick the music style that fits you. We’ll match you with pre-made guitars from our curated list.</p>
+      <p class="form-intro">Two questions: pick your music style and whether you want acoustic, electric, or either. We’ll match you with pre-made guitars from our curated list.</p>
 
       <form class="lead-form" id="style-quiz" action="results.html" method="get">
         <fieldset>
@@ -50,6 +50,22 @@
           <label class="choice">
             <input type="radio" name="style" value="country">
             Country
+          </label>
+        </fieldset>
+
+        <fieldset>
+          <legend>Acoustic or electric?</legend>
+          <label class="choice">
+            <input type="radio" name="type" value="acoustic" required>
+            Acoustic
+          </label>
+          <label class="choice">
+            <input type="radio" name="type" value="electric">
+            Electric
+          </label>
+          <label class="choice">
+            <input type="radio" name="type" value="either">
+            Either / not sure
           </label>
         </fieldset>
 

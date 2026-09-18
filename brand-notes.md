@@ -71,6 +71,13 @@ Turn usage data into pitch material; draft the roadmap slide for won’t-haves (
 - **Honesty:** Copy frames matches as curated pre-made starters, not custom builds
 - **Next:** Deploy/test on Pages; then Slice 2 (acoustic/electric) only after checklist passes
 
+### Slice 2 — Acoustic / electric (implemented)
+
+- **What shipped:** Second quiz question (acoustic / electric / either) → `getMatches` filters by style + type (`either` skips type filter)
+- **Empty combos:** Results show a clear message to try Either or another style
+- **Out of slice:** experience, budget, handedness, artist, images, claim
+- **Next:** Test on Pages; then Slice 3 (experience level) only after checklist passes
+
 ## Working agreements (how we build)
 
 FindYourSound-specific rules adapted from vibe-coding best practices. Follow these whenever prompting or shipping a slice.
