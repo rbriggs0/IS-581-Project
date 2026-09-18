@@ -1,0 +1,146 @@
+[
+  {
+    "id": "squier-affinity-strat",
+    "name": "Affinity Series Stratocaster",
+    "brand": "Squier",
+    "styles": ["rock", "blues"],
+    "type": "electric",
+    "priceBand": "$",
+    "blurb": "A versatile electric that covers bright rock rhythm and classic blues leads without a big spend."
+  },
+  {
+    "id": "fender-player-strat",
+    "name": "Player Stratocaster",
+    "brand": "Fender",
+    "styles": ["rock", "blues", "jazz"],
+    "type": "electric",
+    "priceBand": "$$",
+    "blurb": "Clear single-coil voice that sits well in rock, blues, and cleaner jazz-adjacent tones."
+  },
+  {
+    "id": "epiphone-les-paul-studio",
+    "name": "Les Paul Studio",
+    "brand": "Epiphone",
+    "styles": ["rock", "metal", "blues"],
+    "type": "electric",
+    "priceBand": "$$",
+    "blurb": "Thick humbucker punch for rock riffs, blues grit, and heavier styles."
+  },
+  {
+    "id": "gibson-sg-standard",
+    "name": "SG Standard",
+    "brand": "Gibson",
+    "styles": ["rock", "metal"],
+    "type": "electric",
+    "priceBand": "$$$",
+    "blurb": "Aggressive midrange cut that cuts through rock and metal mixes."
+  },
+  {
+    "id": "ibanez-grg121",
+    "name": "GRG121DX",
+    "brand": "Ibanez",
+    "styles": ["metal", "rock"],
+    "type": "electric",
+    "priceBand": "$",
+    "blurb": "Fast neck and high-output pickups aimed at metal and hard rock playing."
+  },
+  {
+    "id": "jackson-js32",
+    "name": "JS Series Rhoads JS32",
+    "brand": "Jackson",
+    "styles": ["metal"],
+    "type": "electric",
+    "priceBand": "$$",
+    "blurb": "Pointy, high-gain ready shape built for metal leads and tight rhythm."
+  },
+  {
+    "id": "yamaha-fg800",
+    "name": "FG800",
+    "brand": "Yamaha",
+    "styles": ["folk", "country"],
+    "type": "acoustic",
+    "priceBand": "$",
+    "blurb": "Reliable dreadnought volume for folk strummers and country songwriting."
+  },
+  {
+    "id": "taylor-114ce",
+    "name": "114ce",
+    "brand": "Taylor",
+    "styles": ["folk", "country", "jazz"],
+    "type": "acoustic",
+    "priceBand": "$$$",
+    "blurb": "Balanced acoustic clarity that flatters folk, country, and fingerstyle jazz."
+  },
+  {
+    "id": "martin-d28",
+    "name": "D-28",
+    "brand": "Martin",
+    "styles": ["folk", "country"],
+    "type": "acoustic",
+    "priceBand": "$$$",
+    "blurb": "Deep dreadnought projection for classic folk and country acoustic tones."
+  },
+  {
+    "id": "gretsch-g2622",
+    "name": "Streamliner G2622",
+    "brand": "Gretsch",
+    "styles": ["jazz", "rock", "blues"],
+    "type": "electric",
+    "priceBand": "$$",
+    "blurb": "Hollow-body warmth for jazz chords, bluesy leads, and rockabilly edge."
+  },
+  {
+    "id": "ibanez-afc151",
+    "name": "AFC151",
+    "brand": "Ibanez",
+    "styles": ["jazz"],
+    "type": "electric",
+    "priceBand": "$$$",
+    "blurb": "Full hollow body with a smooth, round jazz voice for chord melody and comps."
+  },
+  {
+    "id": "fender-player-tele",
+    "name": "Player Telecaster",
+    "brand": "Fender",
+    "styles": ["country", "rock", "blues"],
+    "type": "electric",
+    "priceBand": "$$",
+    "blurb": "Twangy snap that defines country, with enough bite for rock and blues."
+  },
+  {
+    "id": "gretsch-g5420t",
+    "name": "Electromatic G5420T",
+    "brand": "Gretsch",
+    "styles": ["country", "jazz", "rock"],
+    "type": "electric",
+    "priceBand": "$$",
+    "blurb": "Filter'Tron sparkle for country twang, jazz cleans, and vintage rock."
+  },
+  {
+    "id": "epiphone-casino",
+    "name": "Casino",
+    "brand": "Epiphone",
+    "styles": ["rock", "blues", "jazz"],
+    "type": "electric",
+    "priceBand": "$$",
+    "blurb": "Open hollow-body character for rock jangle, blues, and jazz-leaning cleans."
+  },
+  {
+    "id": "seagull-s6",
+    "name": "S6 Original",
+    "brand": "Seagull",
+    "styles": ["folk"],
+    "type": "acoustic",
+    "priceBand": "$$",
+    "blurb": "Warm Canadian cedar top that rewards folk fingerpicking and campfire strums."
+  },
+  {
+    "id": "prs-se-custom24",
+    "name": "SE Custom 24",
+    "brand": "PRS",
+    "styles": ["rock", "metal", "jazz"],
+    "type": "electric",
+    "priceBand": "$$",
+    "blurb": "Coil-splittable versatility spanning rock crunch, metal rhythm, and cleaner jazz lines."
+  }
+]
