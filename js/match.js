@@ -1,6 +1,6 @@
 /**
- * FindYourSound — Slice 1–3 matching
- * Filters curated gear by style, type, and experience level.
+ * FindYourSound — Slice 1–4 matching
+ * Filters curated gear by style, type, experience level, and max budget.
  */
 
 export const STYLES = ["rock", "blues", "jazz", "folk", "metal", "country"];
@@ -27,9 +27,13 @@ export const LEVEL_LABELS = {
   either: "Any level / not sure",
 };
 
+export const BUDGET_MIN = 0;
+export const BUDGET_MAX = 5000;
+export const BUDGET_STEP = 50;
+
 /**
- * @param {Array<{styles: string[], type: string, levels?: string[]}>} gear
- * @param {{ style: string, type?: string, level?: string }} filters
+ * @param {Array<{styles: string[], type: string, levels?: string[], approxPrice?: number}>} gear
+ * @param {{ style: string, type?: string, level?: string, budget?: number }} filters
  * @returns {typeof gear}
  */
 export function getMatches(gear, filters = {}) {
@@ -37,6 +41,7 @@ export function getMatches(gear, filters = {}) {
   const style = String(filters.style || "").toLowerCase();
   const type = String(filters.type || "either").toLowerCase();
   const level = String(filters.level || "either").toLowerCase();
+  const budget = Number(filters.budget);
   if (!style) return [];
 
   return gear.filter((item) => {
@@ -56,6 +61,11 @@ export function getMatches(gear, filters = {}) {
       if (!levels.includes(level)) return false;
     }
 
+    if (Number.isFinite(budget)) {
+      const price = Number(item.approxPrice);
+      if (!Number.isFinite(price) || price > budget) return false;
+    }
+
     return true;
   });
 }
@@ -71,4 +81,14 @@ export async function loadGear() {
     throw new Error(`Could not load gear data (${res.status})`);
   }
   return res.json();
+}
+
+export function formatBudget(value) {
+  const n = Number(value);
+  if (!Number.isFinite(n)) return "$0";
+  return new Intl.NumberFormat("en-US", {
+    style: "currency",
+    currency: "USD",
+    maximumFractionDigits: 0,
+  }).format(n);
 }

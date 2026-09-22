@@ -700,6 +700,52 @@ em {
   width: 100%;
 }
 
+.budget-fieldset {
+  gap: var(--space-sm);
+}
+
+.budget-dial {
+  display: grid;
+  gap: 0.65rem;
+}
+
+.budget-readout {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--space-sm);
+}
+
+.budget-label {
+  font-weight: 600;
+  color: var(--slate);
+}
+
+.budget-readout strong {
+  font-family: var(--font-display);
+  font-size: 1.75rem;
+  color: var(--charcoal);
+}
+
+.budget-slider-label {
+  font-weight: 500;
+  font-size: 0.9rem;
+  color: var(--text-muted);
+}
+
+.budget-slider {
+  width: 100%;
+  accent-color: var(--wood);
+  cursor: pointer;
+}
+
+.budget-scale {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.85rem;
+  color: var(--slate);
+}
+
 .thank-you-panel p {
   color: var(--text-muted);
   margin-bottom: var(--space-sm);

@@ -84,6 +84,13 @@ Turn usage data into pitch material; draft the roadmap slide for won’t-haves (
 - **Out of slice:** budget, handedness, artist, images, claim
 - **Next:** Test on Pages; then Slice 4 (budget) only after checklist passes
 
+### Slice 4 — Budget (implemented)
+
+- **What shipped:** Max-budget dial ($0–$5,000, step $50) → each gear item has `approxPrice` → filter `approxPrice <= budget`
+- **UX:** Live “Up to $X” readout; results show approximate prices; $0–low budgets get a raise-the-dial empty state
+- **Out of slice:** handedness, artist, images, claim
+- **Next:** Test on Pages; then Slice 5 (handedness) only after checklist passes
+
 ## Working agreements (how we build)
 
 FindYourSound-specific rules adapted from vibe-coding best practices. Follow these whenever prompting or shipping a slice.

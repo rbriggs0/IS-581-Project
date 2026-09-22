@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Find my sound — FindYourSound</title>
-  <meta name="description" content="Pick your style, guitar type, and experience level to get matched with pre-made guitars.">
+  <meta name="description" content="Pick your style, guitar type, experience, and budget to get matched with pre-made guitars.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Source+Sans+3:wght@400;500;600&display=swap" rel="stylesheet">
@@ -22,7 +22,7 @@
     <div class="form-panel">
       <p class="brand-mark">FindYourSound</p>
       <h1>Find my sound</h1>
-      <p class="form-intro">Three questions: music style, acoustic or electric, and your experience level. We’ll match you with pre-made guitars from our curated list.</p>
+      <p class="form-intro">Four questions: music style, acoustic or electric, experience level, and your max budget. We’ll match you with pre-made guitars from our curated list.</p>
 
       <form class="lead-form" id="style-quiz" action="results.html" method="get">
         <fieldset>
@@ -89,9 +89,51 @@
           </label>
         </fieldset>
 
+        <fieldset class="budget-fieldset">
+          <legend>What’s your max budget?</legend>
+          <div class="budget-dial">
+            <div class="budget-readout">
+              <span class="budget-label">Up to</span>
+              <strong id="budget-value">$1,000</strong>
+            </div>
+            <label class="budget-slider-label" for="budget">
+              Drag to set your ceiling (approx. street price)
+            </label>
+            <input
+              id="budget"
+              class="budget-slider"
+              type="range"
+              name="budget"
+              min="0"
+              max="5000"
+              step="50"
+              value="1000"
+              required
+            >
+            <div class="budget-scale" aria-hidden="true">
+              <span>$0</span>
+              <span>$5,000</span>
+            </div>
+          </div>
+        </fieldset>
+
         <button class="btn btn-primary" type="submit">See my matches</button>
       </form>
     </div>
   </main>
+
+  <script type="module">
+    import { formatBudget } from "../js/match.js";
+
+    const slider = document.getElementById("budget");
+    const readout = document.getElementById("budget-value");
+
+    function syncBudget() {
+      readout.textContent = formatBudget(slider.value);
+    }
+
+    slider.addEventListener("input", syncBudget);
+    syncBudget();
+  </script>
 </body>
 </html>
