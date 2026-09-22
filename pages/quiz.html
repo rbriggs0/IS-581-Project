@@ -22,7 +22,7 @@
     <div class="form-panel">
       <p class="brand-mark">FindYourSound</p>
       <h1>Find my sound</h1>
-      <p class="form-intro">Four questions: music style, acoustic or electric, experience level, and your max budget. We’ll match you with pre-made guitars from our curated list.</p>
+      <p class="form-intro">Four questions: music style, acoustic or electric, experience level, and your budget range. We’ll match you with pre-made guitars from our curated list.</p>
 
       <form class="lead-form" id="style-quiz" action="results.html" method="get">
         <fieldset>
@@ -90,26 +90,43 @@
         </fieldset>
 
         <fieldset class="budget-fieldset">
-          <legend>What’s your max budget?</legend>
+          <legend>What’s your budget range?</legend>
           <div class="budget-dial">
             <div class="budget-readout">
-              <span class="budget-label">Up to</span>
-              <strong id="budget-value">$1,000</strong>
+              <span class="budget-label">Between</span>
+              <strong id="budget-range-value">$300 – $1,500</strong>
             </div>
-            <label class="budget-slider-label" for="budget">
-              Drag to set your ceiling (approx. street price)
-            </label>
-            <input
-              id="budget"
-              class="budget-slider"
-              type="range"
-              name="budget"
-              min="0"
-              max="5000"
-              step="50"
-              value="1000"
-              required
-            >
+            <p class="budget-slider-label">
+              Drag both handles to set a low and high you’re willing to spend (approx. street price).
+            </p>
+            <div class="budget-dual">
+              <div class="budget-dual-track" aria-hidden="true"></div>
+              <div class="budget-dual-range" id="budget-dual-fill" aria-hidden="true"></div>
+              <label class="visually-hidden" for="budgetMin">Minimum budget</label>
+              <input
+                id="budgetMin"
+                class="budget-slider budget-slider-min"
+                type="range"
+                name="budgetMin"
+                min="0"
+                max="5000"
+                step="50"
+                value="300"
+                required
+              >
+              <label class="visually-hidden" for="budgetMax">Maximum budget</label>
+              <input
+                id="budgetMax"
+                class="budget-slider budget-slider-max"
+                type="range"
+                name="budgetMax"
+                min="0"
+                max="5000"
+                step="50"
+                value="1500"
+                required
+              >
+            </div>
             <div class="budget-scale" aria-hidden="true">
               <span>$0</span>
               <span>$5,000</span>
@@ -123,16 +140,37 @@
   </main>
 
   <script type="module">
-    import { formatBudget } from "../js/match.js";
+    import { formatBudget, BUDGET_MIN, BUDGET_MAX } from "../js/match.js";
 
-    const slider = document.getElementById("budget");
-    const readout = document.getElementById("budget-value");
+    const minSlider = document.getElementById("budgetMin");
+    const maxSlider = document.getElementById("budgetMax");
+    const readout = document.getElementById("budget-range-value");
+    const fill = document.getElementById("budget-dual-fill");
 
-    function syncBudget() {
-      readout.textContent = formatBudget(slider.value);
+    function syncBudget(changed) {
+      let minVal = Number(minSlider.value);
+      let maxVal = Number(maxSlider.value);
+
+      if (changed === "min" && minVal > maxVal) {
+        maxSlider.value = String(minVal);
+        maxVal = minVal;
+      }
+      if (changed === "max" && maxVal < minVal) {
+        minSlider.value = String(maxVal);
+        minVal = maxVal;
+      }
+
+      readout.textContent = `${formatBudget(minVal)} – ${formatBudget(maxVal)}`;
+
+      const span = BUDGET_MAX - BUDGET_MIN || 1;
+      const left = ((minVal - BUDGET_MIN) / span) * 100;
+      const right = ((maxVal - BUDGET_MIN) / span) * 100;
+      fill.style.left = `${left}%`;
+      fill.style.width = `${Math.max(0, right - left)}%`;
     }
 
-    slider.addEventListener("input", syncBudget);
+    minSlider.addEventListener("input", () => syncBudget("min"));
+    maxSlider.addEventListener("input", () => syncBudget("max"));
     syncBudget();
   </script>
 </body>

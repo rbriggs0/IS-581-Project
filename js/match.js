@@ -1,6 +1,6 @@
 /**
  * FindYourSound — Slice 1–4 matching
- * Filters curated gear by style, type, experience level, and max budget.
+ * Filters curated gear by style, type, experience level, and budget range.
  */
 
 export const STYLES = ["rock", "blues", "jazz", "folk", "metal", "country"];
@@ -33,7 +33,7 @@ export const BUDGET_STEP = 50;
 
 /**
  * @param {Array<{styles: string[], type: string, levels?: string[], approxPrice?: number}>} gear
- * @param {{ style: string, type?: string, level?: string, budget?: number }} filters
+ * @param {{ style: string, type?: string, level?: string, budgetMin?: number, budgetMax?: number }} filters
  * @returns {typeof gear}
  */
 export function getMatches(gear, filters = {}) {
@@ -41,8 +41,17 @@ export function getMatches(gear, filters = {}) {
   const style = String(filters.style || "").toLowerCase();
   const type = String(filters.type || "either").toLowerCase();
   const level = String(filters.level || "either").toLowerCase();
-  const budget = Number(filters.budget);
+  let budgetMin = Number(filters.budgetMin);
+  let budgetMax = Number(filters.budgetMax);
   if (!style) return [];
+
+  if (!Number.isFinite(budgetMin)) budgetMin = BUDGET_MIN;
+  if (!Number.isFinite(budgetMax)) budgetMax = BUDGET_MAX;
+  if (budgetMin > budgetMax) {
+    const swap = budgetMin;
+    budgetMin = budgetMax;
+    budgetMax = swap;
+  }
 
   return gear.filter((item) => {
     const stylesOk =
@@ -61,9 +70,9 @@ export function getMatches(gear, filters = {}) {
       if (!levels.includes(level)) return false;
     }
 
-    if (Number.isFinite(budget)) {
-      const price = Number(item.approxPrice);
-      if (!Number.isFinite(price) || price > budget) return false;
+    const price = Number(item.approxPrice);
+    if (!Number.isFinite(price) || price < budgetMin || price > budgetMax) {
+      return false;
     }
 
     return true;
@@ -91,4 +100,10 @@ export function formatBudget(value) {
     currency: "USD",
     maximumFractionDigits: 0,
   }).format(n);
+}
+
+export function clampBudget(value) {
+  const n = Number(value);
+  if (!Number.isFinite(n)) return BUDGET_MIN;
+  return Math.max(BUDGET_MIN, Math.min(BUDGET_MAX, n));
 }

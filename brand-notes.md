@@ -86,8 +86,8 @@ Turn usage data into pitch material; draft the roadmap slide for won’t-haves (
 
 ### Slice 4 — Budget (implemented)
 
-- **What shipped:** Max-budget dial ($0–$5,000, step $50) → each gear item has `approxPrice` → filter `approxPrice <= budget`
-- **UX:** Live “Up to $X” readout; results show approximate prices; $0–low budgets get a raise-the-dial empty state
+- **What shipped:** Dual budget dial ($0–$5,000, step $50) for min + max → each gear item has `approxPrice` → filter `budgetMin <= approxPrice <= budgetMax`
+- **UX:** Live “$X – $Y” readout; results show approximate prices; widen-range empty state when nothing fits
 - **Out of slice:** handedness, artist, images, claim
 - **Next:** Test on Pages; then Slice 5 (handedness) only after checklist passes
 

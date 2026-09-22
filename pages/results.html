@@ -43,6 +43,8 @@
       TYPE_LABELS,
       LEVEL_LABELS,
       formatBudget,
+      clampBudget,
+      BUDGET_MIN,
       BUDGET_MAX,
     } from "../js/match.js";
 
@@ -52,9 +54,19 @@
     const levelRaw = (params.get("level") || "either").toLowerCase();
     const type = typeRaw in TYPE_LABELS ? typeRaw : "either";
     const level = levelRaw in LEVEL_LABELS ? levelRaw : "either";
-    let budget = Number(params.get("budget"));
-    if (!Number.isFinite(budget)) budget = BUDGET_MAX;
-    budget = Math.max(0, Math.min(BUDGET_MAX, budget));
+
+    let budgetMin = clampBudget(params.get("budgetMin") ?? BUDGET_MIN);
+    let budgetMax = clampBudget(params.get("budgetMax") ?? BUDGET_MAX);
+    // Back-compat: old single `budget` param = max only
+    if (params.has("budget") && !params.has("budgetMax")) {
+      budgetMax = clampBudget(params.get("budget"));
+      budgetMin = BUDGET_MIN;
+    }
+    if (budgetMin > budgetMax) {
+      const swap = budgetMin;
+      budgetMin = budgetMax;
+      budgetMax = swap;
+    }
 
     const heading = document.getElementById("results-heading");
     const lead = document.getElementById("results-lead");
@@ -100,21 +112,26 @@
         type === "either" ? "acoustic or electric" : typeLabel.toLowerCase();
       const levelPhrase =
         level === "either" ? "any experience level" : levelLabel.toLowerCase();
+      const budgetPhrase = `${formatBudget(budgetMin)} – ${formatBudget(budgetMax)}`;
 
       heading.textContent = `${styleLabel} · ${typeLabel} · ${levelLabel}`;
-      lead.textContent = `Pre-made ${typePhrase} matches for ${levelPhrase}, tagged for ${styleLabel.toLowerCase()}, at or under ${formatBudget(budget)}. Scroll if there are several.`;
+      lead.textContent = `Pre-made ${typePhrase} matches for ${levelPhrase}, tagged for ${styleLabel.toLowerCase()}, priced about ${budgetPhrase}. Scroll if there are several.`;
 
       try {
         const gear = await loadGear();
-        const matches = getMatches(gear, { style, type, level, budget });
+        const matches = getMatches(gear, {
+          style,
+          type,
+          level,
+          budgetMin,
+          budgetMax,
+        });
         if (!matches.length) {
           status.textContent =
-            budget < 200
-              ? "Raise your budget dial—almost nothing in our list is under that amount yet."
-              : "No guitars in our list for that combo and budget. Try a higher budget or Any level / Either.";
+            "No guitars in our list for that combo and price range. Widen the dials or try Any level / Either.";
           return;
         }
-        status.textContent = `${matches.length} match${matches.length === 1 ? "" : "es"} · up to ${formatBudget(budget)}`;
+        status.textContent = `${matches.length} match${matches.length === 1 ? "" : "es"} · ${budgetPhrase}`;
         renderCards(matches);
       } catch (err) {
         console.error(err);
