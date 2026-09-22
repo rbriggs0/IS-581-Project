@@ -88,6 +88,7 @@ Turn usage data into pitch material; draft the roadmap slide for won’t-haves (
 
 - **What shipped:** Dual budget dial ($0–$5,000, step $50) for min + max → each gear item has `approxPrice` → filter `budgetMin <= approxPrice <= budgetMax`
 - **UX:** Live “$X – $Y” readout; results show approximate prices; widen-range empty state when nothing fits
+- **Price refresh:** `approxPrice` values updated from Guitar Center (and nearby major retailer) listings where found; each item has a `priceNote`. Still not live API pricing—re-check before a GC pitch.
 - **Out of slice:** handedness, artist, images, claim
 - **Next:** Test on Pages; then Slice 5 (handedness) only after checklist passes
 

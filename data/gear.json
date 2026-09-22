@@ -7,7 +7,8 @@
     "type": "electric",
     "priceBand": "$",
     "levels": ["beginner", "intermediate"],
-    "approxPrice": 249,
+    "approxPrice": 320,
+    "priceNote": "Guitar Center listing ~$319.99",
     "blurb": "A versatile electric that covers bright rock rhythm and classic blues leads without a big spend."
   },
   {
@@ -18,7 +19,8 @@
     "type": "electric",
     "priceBand": "$$",
     "levels": ["beginner", "intermediate", "advanced"],
-    "approxPrice": 799,
+    "approxPrice": 850,
+    "priceNote": "Guitar Center Player II Strat ~$849.99",
     "blurb": "Clear single-coil voice that sits well in rock, blues, and cleaner jazz-adjacent tones."
   },
   {
@@ -29,7 +31,8 @@
     "type": "electric",
     "priceBand": "$$",
     "levels": ["beginner", "intermediate"],
-    "approxPrice": 599,
+    "approxPrice": 549,
+    "priceNote": "Guitar Center ~$549",
     "blurb": "Thick humbucker punch for rock riffs, blues grit, and heavier styles."
   },
   {
@@ -41,6 +44,7 @@
     "priceBand": "$$$",
     "levels": ["intermediate", "advanced"],
     "approxPrice": 1799,
+    "priceNote": "Typical GC/street for SG Standard; confirm current finish SKU",
     "blurb": "Aggressive midrange cut that cuts through rock and metal mixes."
   },
   {
@@ -51,7 +55,8 @@
     "type": "electric",
     "priceBand": "$",
     "levels": ["beginner", "intermediate"],
-    "approxPrice": 219,
+    "approxPrice": 230,
+    "priceNote": "Sweetwater ~$229.99 (GC may vary)",
     "blurb": "Fast neck and high-output pickups aimed at metal and hard rock playing."
   },
   {
@@ -62,7 +67,8 @@
     "type": "electric",
     "priceBand": "$$",
     "levels": ["beginner", "intermediate"],
-    "approxPrice": 399,
+    "approxPrice": 500,
+    "priceNote": "Guitar Center ~$499.99",
     "blurb": "Pointy, high-gain ready shape built for metal leads and tight rhythm."
   },
   {
@@ -73,7 +79,8 @@
     "type": "acoustic",
     "priceBand": "$",
     "levels": ["beginner", "intermediate"],
-    "approxPrice": 229,
+    "approxPrice": 230,
+    "priceNote": "Guitar Center ~$229.99",
     "blurb": "Reliable dreadnought volume for folk, singer-songwriter rock, and bluesy acoustic sessions."
   },
   {
@@ -82,9 +89,10 @@
     "brand": "Taylor",
     "styles": ["folk", "country", "jazz", "blues"],
     "type": "acoustic",
-    "priceBand": "$$$",
+    "priceBand": "$$",
     "levels": ["intermediate", "advanced"],
     "approxPrice": 799,
+    "priceNote": "Guitar Center ~$799",
     "blurb": "Balanced acoustic clarity that flatters folk, country, blues fingerstyle, and jazz-leaning acoustics."
   },
   {
@@ -95,18 +103,20 @@
     "type": "acoustic",
     "priceBand": "$$$",
     "levels": ["intermediate", "advanced"],
-    "approxPrice": 3499,
+    "approxPrice": 3599,
+    "priceNote": "Typical current street for Standard D-28; confirm GC SKU",
     "blurb": "Deep dreadnought projection for folk, country, classic rock acoustics, and blues."
   },
   {
     "id": "epiphone-hummingbird",
-    "name": "Hummingbird",
+    "name": "Hummingbird EC Studio",
     "brand": "Epiphone",
     "styles": ["rock", "folk", "country"],
     "type": "acoustic",
     "priceBand": "$$",
     "levels": ["beginner", "intermediate", "advanced"],
-    "approxPrice": 549,
+    "approxPrice": 500,
+    "priceNote": "Guitar Center Hummingbird EC Studio ~$499.99",
     "blurb": "Square-shoulder acoustic punch often used for rock rhythm and folk/country songwriting."
   },
   {
@@ -115,9 +125,10 @@
     "brand": "Recording King",
     "styles": ["blues", "folk", "country"],
     "type": "acoustic",
-    "priceBand": "$$",
+    "priceBand": "$",
     "levels": ["intermediate", "advanced"],
-    "approxPrice": 349,
+    "approxPrice": 300,
+    "priceNote": "Dirty 30s series street ~$300 (variant SKUs differ)",
     "blurb": "Metallic resonator bite made for blues slide and rootsy folk/country textures."
   },
   {
@@ -128,7 +139,8 @@
     "type": "electric",
     "priceBand": "$$",
     "levels": ["beginner", "intermediate"],
-    "approxPrice": 499,
+    "approxPrice": 500,
+    "priceNote": "Guitar Center G2622 ~$499.99–$549.99",
     "blurb": "Hollow-body warmth for jazz chords, bluesy leads, and rockabilly edge."
   },
   {
@@ -140,6 +152,7 @@
     "priceBand": "$$$",
     "levels": ["intermediate", "advanced"],
     "approxPrice": 1199,
+    "priceNote": "Typical street; confirm current GC listing",
     "blurb": "Full hollow body with a smooth, round jazz voice for chord melody and comps."
   },
   {
@@ -150,7 +163,8 @@
     "type": "electric",
     "priceBand": "$$",
     "levels": ["beginner", "intermediate", "advanced"],
-    "approxPrice": 799,
+    "approxPrice": 850,
+    "priceNote": "Aligned with current Player II street ~$850",
     "blurb": "Twangy snap for country and folk-rock, with enough bite for rock and blues."
   },
   {
@@ -161,7 +175,8 @@
     "type": "electric",
     "priceBand": "$$",
     "levels": ["intermediate", "advanced"],
-    "approxPrice": 899,
+    "approxPrice": 850,
+    "priceNote": "Guitar Center ~$849.99",
     "blurb": "Filter'Tron sparkle for country twang, jazz cleans, and vintage rock."
   },
   {
@@ -173,6 +188,7 @@
     "priceBand": "$$",
     "levels": ["intermediate", "advanced"],
     "approxPrice": 699,
+    "priceNote": "Standard Casino street ~$699 (Worn variants often ~$499)",
     "blurb": "Open hollow-body character for rock jangle, blues, and jazz-leaning cleans."
   },
   {
@@ -183,7 +199,8 @@
     "type": "acoustic",
     "priceBand": "$$",
     "levels": ["beginner", "intermediate"],
-    "approxPrice": 499,
+    "approxPrice": 699,
+    "priceNote": "Guitar Center ~$699 (was ~$749)",
     "blurb": "Warm Canadian cedar top that rewards folk fingerpicking and intimate blues acoustics."
   },
   {
@@ -194,7 +211,8 @@
     "type": "electric",
     "priceBand": "$$$",
     "levels": ["intermediate", "advanced"],
-    "approxPrice": 1399,
+    "approxPrice": 1200,
+    "priceNote": "Guitar Center ~$1,199.99",
     "blurb": "Hybrid electric platform for folk and singer-songwriter tones with rock and blues flexibility."
   },
   {
@@ -205,7 +223,8 @@
     "type": "electric",
     "priceBand": "$$",
     "levels": ["intermediate", "advanced"],
-    "approxPrice": 799,
+    "approxPrice": 849,
+    "priceNote": "Guitar Center ~$849 (sale from ~$949)",
     "blurb": "Coil-splittable versatility spanning rock crunch, metal rhythm, and cleaner jazz lines."
   },
   {
@@ -216,7 +235,8 @@
     "type": "acoustic",
     "priceBand": "$",
     "levels": ["beginner", "intermediate"],
-    "approxPrice": 279,
+    "approxPrice": 300,
+    "priceNote": "Classical CG122MS street ~$300; GC CGX122MS (AE) is higher (~$520)",
     "blurb": "Nylon-string warmth suited to jazz chord work and softer folk fingerstyle."
   }
 ]
