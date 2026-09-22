@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Your matches — FindYourSound</title>
-  <meta name="description" content="Pre-made guitar matches based on your music style and guitar type.">
+  <meta name="description" content="Pre-made guitar matches based on your style, type, and experience level.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Source+Sans+3:wght@400;500;600&display=swap" rel="stylesheet">
@@ -36,12 +36,20 @@
   </main>
 
   <script type="module">
-    import { getMatches, loadGear, STYLE_LABELS, TYPE_LABELS } from "../js/match.js";
+    import {
+      getMatches,
+      loadGear,
+      STYLE_LABELS,
+      TYPE_LABELS,
+      LEVEL_LABELS,
+    } from "../js/match.js";
 
     const params = new URLSearchParams(window.location.search);
     const style = (params.get("style") || "").toLowerCase();
     const typeRaw = (params.get("type") || "either").toLowerCase();
+    const levelRaw = (params.get("level") || "either").toLowerCase();
     const type = typeRaw in TYPE_LABELS ? typeRaw : "either";
+    const level = levelRaw in LEVEL_LABELS ? levelRaw : "either";
 
     const heading = document.getElementById("results-heading");
     const lead = document.getElementById("results-lead");
@@ -74,25 +82,29 @@
     async function init() {
       if (!style || !(style in STYLE_LABELS)) {
         heading.textContent = "Pick your preferences first";
-        lead.textContent = "Choose a music style and acoustic or electric on the quiz to see matches.";
+        lead.textContent =
+          "Choose a music style, guitar type, and experience level on the quiz to see matches.";
         status.innerHTML = `<a class="btn btn-primary" href="quiz.html">Take the quiz</a>`;
         return;
       }
 
       const styleLabel = STYLE_LABELS[style];
       const typeLabel = TYPE_LABELS[type];
+      const levelLabel = LEVEL_LABELS[level];
       const typePhrase =
         type === "either" ? "acoustic or electric" : typeLabel.toLowerCase();
+      const levelPhrase =
+        level === "either" ? "any experience level" : levelLabel.toLowerCase();
 
-      heading.textContent = `${styleLabel} · ${typeLabel}`;
-      lead.textContent = `Pre-made ${typePhrase} matches tagged for ${styleLabel.toLowerCase()} from our curated starter list. Scroll if there are several.`;
+      heading.textContent = `${styleLabel} · ${typeLabel} · ${levelLabel}`;
+      lead.textContent = `Pre-made ${typePhrase} matches for ${levelPhrase}, tagged for ${styleLabel.toLowerCase()}. Scroll if there are several.`;
 
       try {
         const gear = await loadGear();
-        const matches = getMatches(gear, { style, type });
+        const matches = getMatches(gear, { style, type, level });
         if (!matches.length) {
           status.textContent =
-            "No guitars in our list for that combo yet. Try Either / not sure, or a different style.";
+            "No guitars in our list for that combo yet. Try Any level / not sure, Either / not sure, or a different style.";
           return;
         }
         status.textContent = `${matches.length} match${matches.length === 1 ? "" : "es"}`;

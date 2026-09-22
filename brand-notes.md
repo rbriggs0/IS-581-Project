@@ -78,6 +78,12 @@ Turn usage data into pitch material; draft the roadmap slide for won’t-haves (
 - **Out of slice:** experience, budget, handedness, artist, images, claim
 - **Next:** Test on Pages; then Slice 3 (experience level) only after checklist passes
 
+### Slice 3 — Experience level (implemented)
+
+- **What shipped:** Third quiz question (beginner / intermediate / advanced / any) → each gear item has `levels[]` → filter combined with style + type
+- **Out of slice:** budget, handedness, artist, images, claim
+- **Next:** Test on Pages; then Slice 4 (budget) only after checklist passes
+
 ## Working agreements (how we build)
 
 FindYourSound-specific rules adapted from vibe-coding best practices. Follow these whenever prompting or shipping a slice.

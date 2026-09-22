@@ -6,6 +6,7 @@
     "styles": ["rock", "blues"],
     "type": "electric",
     "priceBand": "$",
+    "levels": ["beginner", "intermediate"],
     "blurb": "A versatile electric that covers bright rock rhythm and classic blues leads without a big spend."
   },
   {
@@ -15,6 +16,7 @@
     "styles": ["rock", "blues", "jazz"],
     "type": "electric",
     "priceBand": "$$",
+    "levels": ["beginner", "intermediate", "advanced"],
     "blurb": "Clear single-coil voice that sits well in rock, blues, and cleaner jazz-adjacent tones."
   },
   {
@@ -24,6 +26,7 @@
     "styles": ["rock", "metal", "blues"],
     "type": "electric",
     "priceBand": "$$",
+    "levels": ["beginner", "intermediate"],
     "blurb": "Thick humbucker punch for rock riffs, blues grit, and heavier styles."
   },
   {
@@ -33,6 +36,7 @@
     "styles": ["rock", "metal"],
     "type": "electric",
     "priceBand": "$$$",
+    "levels": ["intermediate", "advanced"],
     "blurb": "Aggressive midrange cut that cuts through rock and metal mixes."
   },
   {
@@ -42,6 +46,7 @@
     "styles": ["metal", "rock"],
     "type": "electric",
     "priceBand": "$",
+    "levels": ["beginner", "intermediate"],
     "blurb": "Fast neck and high-output pickups aimed at metal and hard rock playing."
   },
   {
@@ -51,6 +56,7 @@
     "styles": ["metal"],
     "type": "electric",
     "priceBand": "$$",
+    "levels": ["beginner", "intermediate"],
     "blurb": "Pointy, high-gain ready shape built for metal leads and tight rhythm."
   },
   {
@@ -60,6 +66,7 @@
     "styles": ["folk", "country", "rock", "blues"],
     "type": "acoustic",
     "priceBand": "$",
+    "levels": ["beginner", "intermediate"],
     "blurb": "Reliable dreadnought volume for folk, singer-songwriter rock, and bluesy acoustic sessions."
   },
   {
@@ -69,6 +76,7 @@
     "styles": ["folk", "country", "jazz", "blues"],
     "type": "acoustic",
     "priceBand": "$$$",
+    "levels": ["intermediate", "advanced"],
     "blurb": "Balanced acoustic clarity that flatters folk, country, blues fingerstyle, and jazz-leaning acoustics."
   },
   {
@@ -78,6 +86,7 @@
     "styles": ["folk", "country", "rock", "blues"],
     "type": "acoustic",
     "priceBand": "$$$",
+    "levels": ["intermediate", "advanced"],
     "blurb": "Deep dreadnought projection for folk, country, classic rock acoustics, and blues."
   },
   {
@@ -87,6 +96,7 @@
     "styles": ["rock", "folk", "country"],
     "type": "acoustic",
     "priceBand": "$$",
+    "levels": ["beginner", "intermediate", "advanced"],
     "blurb": "Square-shoulder acoustic punch often used for rock rhythm and folk/country songwriting."
   },
   {
@@ -96,6 +106,7 @@
     "styles": ["blues", "folk", "country"],
     "type": "acoustic",
     "priceBand": "$$",
+    "levels": ["intermediate", "advanced"],
     "blurb": "Metallic resonator bite made for blues slide and rootsy folk/country textures."
   },
   {
@@ -105,6 +116,7 @@
     "styles": ["jazz", "rock", "blues"],
     "type": "electric",
     "priceBand": "$$",
+    "levels": ["beginner", "intermediate"],
     "blurb": "Hollow-body warmth for jazz chords, bluesy leads, and rockabilly edge."
   },
   {
@@ -114,6 +126,7 @@
     "styles": ["jazz"],
     "type": "electric",
     "priceBand": "$$$",
+    "levels": ["intermediate", "advanced"],
     "blurb": "Full hollow body with a smooth, round jazz voice for chord melody and comps."
   },
   {
@@ -123,6 +136,7 @@
     "styles": ["country", "rock", "blues", "folk"],
     "type": "electric",
     "priceBand": "$$",
+    "levels": ["beginner", "intermediate", "advanced"],
     "blurb": "Twangy snap for country and folk-rock, with enough bite for rock and blues."
   },
   {
@@ -132,6 +146,7 @@
     "styles": ["country", "jazz", "rock"],
     "type": "electric",
     "priceBand": "$$",
+    "levels": ["intermediate", "advanced"],
     "blurb": "Filter'Tron sparkle for country twang, jazz cleans, and vintage rock."
   },
   {
@@ -141,6 +156,7 @@
     "styles": ["rock", "blues", "jazz"],
     "type": "electric",
     "priceBand": "$$",
+    "levels": ["intermediate", "advanced"],
     "blurb": "Open hollow-body character for rock jangle, blues, and jazz-leaning cleans."
   },
   {
@@ -150,6 +166,7 @@
     "styles": ["folk", "blues"],
     "type": "acoustic",
     "priceBand": "$$",
+    "levels": ["beginner", "intermediate"],
     "blurb": "Warm Canadian cedar top that rewards folk fingerpicking and intimate blues acoustics."
   },
   {
@@ -159,6 +176,7 @@
     "styles": ["folk", "rock", "country", "blues"],
     "type": "electric",
     "priceBand": "$$$",
+    "levels": ["intermediate", "advanced"],
     "blurb": "Hybrid electric platform for folk and singer-songwriter tones with rock and blues flexibility."
   },
   {
@@ -168,6 +186,7 @@
     "styles": ["rock", "metal", "jazz"],
     "type": "electric",
     "priceBand": "$$",
+    "levels": ["intermediate", "advanced"],
     "blurb": "Coil-splittable versatility spanning rock crunch, metal rhythm, and cleaner jazz lines."
   },
   {
@@ -177,6 +196,7 @@
     "styles": ["jazz", "folk"],
     "type": "acoustic",
     "priceBand": "$",
+    "levels": ["beginner", "intermediate"],
     "blurb": "Nylon-string warmth suited to jazz chord work and softer folk fingerstyle."
   }
 ]
