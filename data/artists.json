@@ -1,0 +1,183 @@
+[
+  {
+    "id": "jimi-hendrix",
+    "name": "Jimi Hendrix",
+    "styles": ["rock", "blues"],
+    "gearIds": ["squier-affinity-strat", "fender-player-strat"],
+    "reason": "Hendrix’s voice is closely tied to Strat-style single-coils and expressive vibrato—these are accessible Strat platforms in that lane.",
+    "sourceNote": "Curated inspiration from well-documented Strat use; not an official signature match."
+  },
+  {
+    "id": "jimmy-page",
+    "name": "Jimmy Page",
+    "styles": ["rock", "blues"],
+    "gearIds": ["epiphone-les-paul-studio", "gibson-sg-standard", "martin-d28"],
+    "reason": "Page’s rock tone is often Les Paul and SG humbuckers; he also leaned on open and DADGAD-style tunings for acoustic textures—these cover both sides.",
+    "sourceNote": "Inspired by widely reported Les Paul / SG eras and known alternate-tuning acoustic work; not exact stage guitars."
+  },
+  {
+    "id": "slash",
+    "name": "Slash",
+    "styles": ["rock"],
+    "signatureGearIds": ["epiphone-slash-les-paul"],
+    "gearIds": ["epiphone-les-paul-studio", "epiphone-slash-les-paul"],
+    "reason": "Slash’s sound is strongly linked to Les Paul humbuckers—his Epiphone signature sits first when it fits your budget, with the Studio as a nearby step-in.",
+    "sourceNote": "Signature SKU called out when in-budget; Studio remains a tone-family alternative."
+  },
+  {
+    "id": "the-edge",
+    "name": "The Edge",
+    "styles": ["rock"],
+    "gearIds": ["fender-player-strat", "fender-player-tele", "fender-acoustasonic-player", "squier-affinity-strat"],
+    "reason": "The Edge’s chiming, delay-soaked parts often sit on Strat/Tele platforms. Some U2 parts also use drop and altered tunings—these are approachable Fender-family starting points for that lane.",
+    "sourceNote": "Tone and platform inspiration; delay/FX do much of the signature sound. Catalog has no Explorer—Strat/Tele/Acoustasonic stand in."
+  },
+  {
+    "id": "john-mayer",
+    "name": "John Mayer",
+    "styles": ["blues", "rock", "folk"],
+    "signatureGearIds": ["prs-silver-sky", "prs-se-silver-sky", "martin-omjm"],
+    "gearIds": [
+      "prs-silver-sky",
+      "prs-se-silver-sky",
+      "martin-omjm",
+      "fender-player-strat",
+      "squier-affinity-strat",
+      "prs-se-custom24",
+      "martin-d28",
+      "taylor-114ce"
+    ],
+    "reason": "Mayer’s PRS Silver Sky (core and SE) and Martin OMJM signature lead the list when they fit your price range; Strat and other acoustics fill in the same lane.",
+    "sourceNote": "Official PRS / Martin signature lines prioritized; other IDs are tone-family backups."
+  },
+  {
+    "id": "eric-clapton",
+    "name": "Eric Clapton",
+    "styles": ["blues", "rock"],
+    "signatureGearIds": ["martin-000-28ec"],
+    "gearIds": [
+      "martin-000-28ec",
+      "fender-player-strat",
+      "squier-affinity-strat",
+      "martin-d28",
+      "yamaha-fg800"
+    ],
+    "reason": "Clapton’s Martin 000-28EC signature leads on the acoustic side when in budget; Strat platforms cover the electric Blackie-era lane.",
+    "sourceNote": "Martin EC is the named signature; Strat picks are tone-family, not Fender Custom Shop signatures."
+  },
+  {
+    "id": "stevie-ray-vaughan",
+    "name": "Stevie Ray Vaughan",
+    "styles": ["blues", "rock"],
+    "gearIds": ["squier-affinity-strat", "fender-player-strat"],
+    "reason": "SRV’s blues-rock attack is classic Strat territory—thick pick attack through single-coils.",
+    "sourceNote": "Inspired by documented Strat preference; our list points to related platforms in-budget."
+  },
+  {
+    "id": "bb-king",
+    "name": "B.B. King",
+    "styles": ["blues"],
+    "gearIds": ["gretsch-g2622", "epiphone-casino"],
+    "reason": "King’s singing lead tone lived in hollow/semi-hollow territory; these are approachable hollow-ish electrics with blues-friendly warmth.",
+    "sourceNote": "Lucille was a Gibson ES-style guitar; we map to nearby hollow/semi options we stock."
+  },
+  {
+    "id": "wes-montgomery",
+    "name": "Wes Montgomery",
+    "styles": ["jazz"],
+    "gearIds": ["ibanez-afc151", "gretsch-g2622"],
+    "reason": "Montgomery’s octave-rich jazz voice sits on full or semi-hollow jazz boxes—these are curated jazz-leaning electrics.",
+    "sourceNote": "Inspired by classic jazz-box association; not a historical exact model claim."
+  },
+  {
+    "id": "bob-dylan",
+    "name": "Bob Dylan",
+    "styles": ["folk", "rock", "country"],
+    "gearIds": ["yamaha-fg800", "martin-d28", "seagull-s6"],
+    "reason": "Dylan’s songwriter sound is dreadnought and flat-top acoustic first—volume and midrange that carry a voice.",
+    "sourceNote": "Folk/acoustic inspiration across eras; Martin is the heritage end, Yamaha/Seagull more reachable."
+  },
+  {
+    "id": "joni-mitchell",
+    "name": "Joni Mitchell",
+    "styles": ["folk", "jazz"],
+    "gearIds": ["martin-d28", "seagull-s6", "taylor-114ce", "yamaha-cg122ms"],
+    "reason": "Mitchell is famous for dozens of alternate tunings and a clear, chord-rich acoustic voice—open, flat-top, and nylon options support that exploratory lane.",
+    "sourceNote": "Inspired by documented alternate-tuning practice and acoustic focus; not a claim of her exact instruments."
+  },
+  {
+    "id": "john-rzeznik",
+    "name": "John Rzeznik",
+    "styles": ["rock", "folk"],
+    "signatureGearIds": ["taylor-814ce", "taylor-314ce"],
+    "gearIds": [
+      "taylor-814ce",
+      "taylor-314ce",
+      "taylor-114ce",
+      "yamaha-fg800",
+      "epiphone-hummingbird",
+      "fender-player-strat",
+      "martin-d28",
+      "seagull-s6",
+      "fender-acoustasonic-player"
+    ],
+    "reason": "Rzeznik’s long Taylor relationship puts Taylor Grand Auditoriums first (814ce when budget allows, 314ce as a closer step)—then other acoustics and a Strat for the rock side. Open and altered tunings are part of that songwriter sound.",
+    "sourceNote": "Taylor artist association / primary stage brand; 814ce is the flagship stand-in (not a named mass-market “Rzeznik” SKU). 314ce is the more reachable Taylor in the same family."
+  },
+  {
+    "id": "keith-richards",
+    "name": "Keith Richards",
+    "styles": ["rock", "blues", "country"],
+    "gearIds": ["fender-player-tele", "epiphone-casino", "gretsch-g2622"],
+    "reason": "Richards’ rhythm language lives in open-G style tunings and Tele/hollow snap—these are approachable twang and jangle platforms.",
+    "sourceNote": "Inspired by famous open-G / five-string approach and Tele-adjacent tones; not exact stage guitars."
+  },
+  {
+    "id": "nick-drake",
+    "name": "Nick Drake",
+    "styles": ["folk"],
+    "gearIds": ["martin-d28", "seagull-s6", "yamaha-fg800"],
+    "reason": "Drake’s intimate folk fingerstyle leaned on unusual tunings and warm flat-tops—these dreadnought and cedar-top options sit in that quiet, resonant lane.",
+    "sourceNote": "Inspired by documented alternate tunings and acoustic focus; not museum-exact gear."
+  },
+  {
+    "id": "ani-difranco",
+    "name": "Ani DiFranco",
+    "styles": ["folk", "rock"],
+    "gearIds": ["taylor-114ce", "seagull-s6", "yamaha-fg800"],
+    "reason": "DiFranco’s percussive, politically charged folk-rock often uses alternate tunings and stage-ready acoustics—clear, responsive tops fit that attack.",
+    "sourceNote": "Inspired by known alternate-tuning / acoustic-first performance style; not signature models."
+  },
+  {
+    "id": "james-hetfield",
+    "name": "James Hetfield",
+    "styles": ["metal", "rock"],
+    "gearIds": ["epiphone-les-paul-studio", "jackson-js32", "prs-se-custom24"],
+    "reason": "Tight, aggressive rhythm metal often leans on high-output humbuckers, fast solid platforms, and drop tunings—these cover that zone.",
+    "sourceNote": "Tone-family mapping to our catalog; not ESP/Explorer signature replicas."
+  },
+  {
+    "id": "kirk-hammett",
+    "name": "Kirk Hammett",
+    "styles": ["metal"],
+    "gearIds": ["ibanez-grg121", "jackson-js32", "prs-se-custom24"],
+    "reason": "Lead-focused metal with fast necks and high-gain friendly pickups—starter and mid platforms in that direction.",
+    "sourceNote": "Inspired by shred/metal lead platforms; catalog IDs are accessible relatives."
+  },
+  {
+    "id": "brad-paisley",
+    "name": "Brad Paisley",
+    "styles": ["country"],
+    "gearIds": ["fender-player-tele", "gretsch-g5420t"],
+    "reason": "Modern country twang and clarity often start with Tele-style snap or Gretsch sparkle.",
+    "sourceNote": "Inspired by Telecaster association in contemporary country; Gretsch covers flashier country cleans."
+  },
+  {
+    "id": "johnny-cash",
+    "name": "Johnny Cash",
+    "styles": ["country", "folk", "rock"],
+    "gearIds": ["martin-d28", "yamaha-fg800", "fender-player-tele"],
+    "reason": "Cash’s sound sits between booming acoustic rhythm and simple electric twang—dreadnoughts and Teles fit that story.",
+    "sourceNote": "Curated from widely known acoustic/electric associations; not museum-exact gear."
+  }
+]

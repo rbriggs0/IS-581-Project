@@ -1,0 +1,272 @@
+{
+    "squier-affinity-strat":  {
+                                  "visual":  "strat",
+                                  "specs":  {
+                                                "body":  "Alder Strat-style solidbody",
+                                                "neck":  "Maple C-shape, 25.5\" scale",
+                                                "electronics":  "3 single-coils / 5-way",
+                                                "notable":  "Synchronized tremolo"
+                                            },
+                                  "image":  "../images/gear/squier-affinity-strat.png"
+                              },
+    "fender-player-strat":  {
+                                "visual":  "strat",
+                                "specs":  {
+                                              "body":  "Alder Strat-style solidbody",
+                                              "neck":  "Maple Modern C, 25.5\" scale",
+                                              "electronics":  "Player series single-coils / 5-way",
+                                              "notable":  "2-point tremolo"
+                                          },
+                                "image":  "../images/gear/fender-player-strat.png"
+                            },
+    "epiphone-les-paul-studio":  {
+                                     "visual":  "les-paul",
+                                     "specs":  {
+                                                   "body":  "Mahogany Les Paul with maple cap",
+                                                   "neck":  "Mahogany, 24.75\" scale",
+                                                   "electronics":  "Epiphone humbuckers / 2 vol 2 tone",
+                                                   "notable":  "Tune-o-matic bridge"
+                                               },
+                                     "image":  "../images/gear/epiphone-les-paul-studio.png"
+                                 },
+    "gibson-sg-standard":  {
+                               "visual":  "sg",
+                               "specs":  {
+                                             "body":  "Mahogany SG double-cut",
+                                             "neck":  "Mahogany, 24.75\" scale",
+                                             "electronics":  "Humbuckers / 2 vol 2 tone",
+                                             "notable":  "Lightweight, fast upper-fret access"
+                                         },
+                               "image":  "../images/gear/gibson-sg-standard.png"
+                           },
+    "ibanez-grg121":  {
+                          "visual":  "superstrat",
+                          "specs":  {
+                                        "body":  "Poplar superstrat",
+                                        "neck":  "Maple Wizard III, 25.5\" scale",
+                                        "electronics":  "H-S-H / 5-way",
+                                        "notable":  "Thin neck for fast playing"
+                                    },
+                          "image":  "../images/gear/ibanez-grg121.png"
+                      },
+    "jackson-js32":  {
+                         "visual":  "rhoads",
+                         "specs":  {
+                                       "body":  "Poplar Rhoads-style V",
+                                       "neck":  "Maple, 25.5\" scale",
+                                       "electronics":  "High-output humbuckers",
+                                       "notable":  "Floyd Rose licensed tremolo"
+                                   },
+                         "image":  "../images/gear/jackson-js32.png"
+                     },
+    "yamaha-fg800":  {
+                         "visual":  "dreadnought",
+                         "specs":  {
+                                       "body":  "Dreadnought, solid spruce top",
+                                       "neck":  "Nato, 25\" scale",
+                                       "electronics":  "Unelectrified",
+                                       "notable":  "Rosewood fingerboard"
+                                   },
+                         "image":  "../images/gear/yamaha-fg800.png"
+                     },
+    "taylor-114ce":  {
+                         "visual":  "ga",
+                         "specs":  {
+                                       "body":  "Grand Auditorium, Sitka spruce top",
+                                       "neck":  "Neo-tropical mahogany, 25.5\" scale",
+                                       "electronics":  "ES-B electronics",
+                                       "notable":  "Venetian cutaway"
+                                   },
+                         "image":  "../images/gear/taylor-114ce.png"
+                     },
+    "martin-d28":  {
+                       "visual":  "dreadnought",
+                       "specs":  {
+                                     "body":  "Dreadnought, Sitka spruce / rosewood",
+                                     "neck":  "Select hardwood, 25.4\" scale",
+                                     "electronics":  "Unelectrified (unless ordered AE)",
+                                     "notable":  "Forward-shifted bracing"
+                                 },
+                       "image":  "../images/gear/martin-d28.png"
+                   },
+    "epiphone-hummingbird":  {
+                                 "visual":  "dreadnought",
+                                 "specs":  {
+                                               "body":  "Square-shoulder dreadnought",
+                                               "neck":  "Mahogany, 24.75\" scale",
+                                               "electronics":  "Fishman Sonitone (EC Studio)",
+                                               "notable":  "Hummingbird pickguard look"
+                                           },
+                                 "image":  "../images/gear/epiphone-hummingbird.png"
+                             },
+    "recording-king-rros-7":  {
+                                  "visual":  "resonator",
+                                  "specs":  {
+                                                "body":  "Resonator / biscuit bridge",
+                                                "neck":  "Mahogany-style, ~25\" scale",
+                                                "electronics":  "Acoustic resonator (no PU on base)",
+                                                "notable":  "Metal-cone projection for slide"
+                                            },
+                                  "image":  "../images/gear/recording-king-rros-7.png"
+                              },
+    "gretsch-g2622":  {
+                          "visual":  "hollow",
+                          "specs":  {
+                                        "body":  "Double-cut Streamliner hollow",
+                                        "neck":  "Nato, 24.75\" scale",
+                                        "electronics":  "Broad\u0027Tron humbuckers",
+                                        "notable":  "Anchored Adjusto-Matic bridge"
+                                    },
+                          "image":  "../images/gear/gretsch-g2622.png"
+                      },
+    "ibanez-afc151":  {
+                          "visual":  "jazzbox",
+                          "specs":  {
+                                        "body":  "Full hollow jazz box",
+                                        "neck":  "Mahogany / ebony board, 24.7\" scale",
+                                        "electronics":  "Super 58 humbucker",
+                                        "notable":  "Wooden bridge / trapeze tailpiece"
+                                    },
+                          "image":  "../images/gear/ibanez-afc151.png"
+                      },
+    "fender-player-tele":  {
+                               "visual":  "tele",
+                               "specs":  {
+                                             "body":  "Alder Tele solidbody",
+                                             "neck":  "Maple Modern C, 25.5\" scale",
+                                             "electronics":  "Player Tele single-coils",
+                                             "notable":  "String-through bridge"
+                                         },
+                               "image":  "../images/gear/fender-player-tele.png"
+                           },
+    "gretsch-g5420t":  {
+                           "visual":  "hollow",
+                           "specs":  {
+                                         "body":  "Hollow Electromatic single-cut",
+                                         "neck":  "Maple, 24.6\" scale",
+                                         "electronics":  "Filter\u0027Tron-style pickups",
+                                         "notable":  "Bigsby vibrato"
+                                     },
+                           "image":  "../images/gear/gretsch-g5420t.png"
+                       },
+    "epiphone-casino":  {
+                            "visual":  "hollow",
+                            "specs":  {
+                                          "body":  "Fully hollow thinline",
+                                          "neck":  "Mahogany, 24.75\" scale",
+                                          "electronics":  "P-90 soapbars",
+                                          "notable":  "No center block; trapeze tailpiece"
+                                      },
+                            "image":  "../images/gear/epiphone-casino.png"
+                        },
+    "seagull-s6":  {
+                       "visual":  "dreadnought",
+                       "specs":  {
+                                     "body":  "Pressure-tested wild cedar top",
+                                     "neck":  "Silver leaf maple integrated, 25.5\" scale",
+                                     "electronics":  "Unelectrified (S6 Original)",
+                                     "notable":  "Custom polished finish"
+                                 },
+                       "image":  "../images/gear/seagull-s6.png"
+                   },
+    "fender-acoustasonic-player":  {
+                                       "visual":  "hybrid",
+                                       "specs":  {
+                                                     "body":  "Hollow Acoustasonic Tele body",
+                                                     "neck":  "Mahogany, 25.5\" scale",
+                                                     "electronics":  "Acoustic + electric voicings",
+                                                     "notable":  "Hybrid acoustic-electric platform"
+                                                 },
+                                       "image":  "../images/gear/fender-acoustasonic-player.png"
+                                   },
+    "prs-se-custom24":  {
+                            "visual":  "superstrat",
+                            "specs":  {
+                                          "body":  "Maple-top mahogany double-cut",
+                                          "neck":  "Wide Thin maple, 25\" scale",
+                                          "electronics":  "85/15 S humbuckers coil-split",
+                                          "notable":  "PRS tremolo"
+                                      },
+                            "image":  "../images/gear/prs-se-custom24.png"
+                        },
+    "yamaha-cg122ms":  {
+                           "visual":  "classical",
+                           "specs":  {
+                                         "body":  "Classical nylon, spruce top",
+                                         "neck":  "Nato / rosewood board, 650mm",
+                                         "electronics":  "Unelectrified",
+                                         "notable":  "Traditional classical body"
+                                     },
+                           "image":  "../images/gear/yamaha-cg122ms.png"
+                       },
+    "prs-se-silver-sky":  {
+                              "visual":  "strat",
+                              "specs":  {
+                                            "body":  "Poplar Strat-style solidbody",
+                                            "neck":  "Maple 635JR, 25.5\" scale",
+                                            "electronics":  "6453 single-coils / 5-way",
+                                            "notable":  "John Mayer SE signature"
+                                        },
+                              "image":  "../images/gear/prs-se-silver-sky.png"
+                          },
+    "prs-silver-sky":  {
+                           "visual":  "strat",
+                           "specs":  {
+                                         "body":  "Alder Strat-style solidbody",
+                                         "neck":  "Maple, 25.5\" scale",
+                                         "electronics":  "6453 single-coils / 5-way",
+                                         "notable":  "John Mayer core signature"
+                                     },
+                           "image":  "../images/gear/prs-silver-sky.png"
+                       },
+    "martin-omjm":  {
+                        "visual":  "orchestra",
+                        "specs":  {
+                                      "body":  "Orchestra Model, Sitka / rosewood",
+                                      "neck":  "Select hardwood, 25.4\" scale",
+                                      "electronics":  "Unelectrified OMJM",
+                                      "notable":  "John Mayer signature OM"
+                                  },
+                        "image":  "../images/gear/martin-omjm.png"
+                    },
+    "taylor-814ce":  {
+                         "visual":  "ga",
+                         "specs":  {
+                                       "body":  "Grand Auditorium, Sitka / rosewood",
+                                       "neck":  "Tropical mahogany, 25.5\" scale",
+                                       "electronics":  "Expression System 2",
+                                       "notable":  "V-Class bracing; cutaway"
+                                   },
+                         "image":  "../images/gear/taylor-814ce.png"
+                     },
+    "taylor-314ce":  {
+                         "visual":  "ga",
+                         "specs":  {
+                                       "body":  "Grand Auditorium, Sitka / sapele",
+                                       "neck":  "Tropical mahogany, 25.5\" scale",
+                                       "electronics":  "Expression System 2",
+                                       "notable":  "V-Class bracing; cutaway"
+                                   },
+                         "image":  "../images/gear/taylor-314ce.png"
+                     },
+    "epiphone-slash-les-paul":  {
+                                    "visual":  "les-paul",
+                                    "specs":  {
+                                                  "body":  "Mahogany Les Paul with maple cap",
+                                                  "neck":  "Mahogany, 24.75\" scale",
+                                                  "electronics":  "Custom Burstbucker-style humbuckers",
+                                                  "notable":  "Slash Epiphone signature"
+                                              },
+                                    "image":  "../images/gear/epiphone-slash-les-paul.png"
+                                },
+    "martin-000-28ec":  {
+                            "visual":  "orchestra",
+                            "specs":  {
+                                          "body":  "000 / auditorium, Sitka / rosewood",
+                                          "neck":  "Select hardwood, 25.4\" scale",
+                                          "electronics":  "Unelectrified EC",
+                                          "notable":  "Eric Clapton signature 000"
+                                      },
+                            "image":  "../images/gear/martin-000-28ec.png"
+                        }
+}

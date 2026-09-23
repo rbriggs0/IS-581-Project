@@ -7,6 +7,7 @@
     "type": "electric",
     "priceBand": "$",
     "levels": ["beginner", "intermediate"],
+    "hands": ["right", "left"],
     "approxPrice": 320,
     "priceNote": "Guitar Center listing ~$319.99",
     "blurb": "A versatile electric that covers bright rock rhythm and classic blues leads without a big spend."
@@ -19,6 +20,7 @@
     "type": "electric",
     "priceBand": "$$",
     "levels": ["beginner", "intermediate", "advanced"],
+    "hands": ["right", "left"],
     "approxPrice": 850,
     "priceNote": "Guitar Center Player II Strat ~$849.99",
     "blurb": "Clear single-coil voice that sits well in rock, blues, and cleaner jazz-adjacent tones."
@@ -31,6 +33,7 @@
     "type": "electric",
     "priceBand": "$$",
     "levels": ["beginner", "intermediate"],
+    "hands": ["right", "left"],
     "approxPrice": 549,
     "priceNote": "Guitar Center ~$549",
     "blurb": "Thick humbucker punch for rock riffs, blues grit, and heavier styles."
@@ -43,6 +46,7 @@
     "type": "electric",
     "priceBand": "$$$",
     "levels": ["intermediate", "advanced"],
+    "hands": ["right", "left"],
     "approxPrice": 1799,
     "priceNote": "Typical GC/street for SG Standard; confirm current finish SKU",
     "blurb": "Aggressive midrange cut that cuts through rock and metal mixes."
@@ -55,6 +59,7 @@
     "type": "electric",
     "priceBand": "$",
     "levels": ["beginner", "intermediate"],
+    "hands": ["right", "left"],
     "approxPrice": 230,
     "priceNote": "Sweetwater ~$229.99 (GC may vary)",
     "blurb": "Fast neck and high-output pickups aimed at metal and hard rock playing."
@@ -67,6 +72,7 @@
     "type": "electric",
     "priceBand": "$$",
     "levels": ["beginner", "intermediate"],
+    "hands": ["right", "left"],
     "approxPrice": 500,
     "priceNote": "Guitar Center ~$499.99",
     "blurb": "Pointy, high-gain ready shape built for metal leads and tight rhythm."
@@ -78,7 +84,8 @@
     "styles": ["folk", "country", "rock", "blues"],
     "type": "acoustic",
     "priceBand": "$",
-    "levels": ["beginner", "intermediate"],
+    "levels": ["beginner", "intermediate", "advanced"],
+    "hands": ["right", "left"],
     "approxPrice": 230,
     "priceNote": "Guitar Center ~$229.99",
     "blurb": "Reliable dreadnought volume for folk, singer-songwriter rock, and bluesy acoustic sessions."
@@ -87,10 +94,11 @@
     "id": "taylor-114ce",
     "name": "114ce",
     "brand": "Taylor",
-    "styles": ["folk", "country", "jazz", "blues"],
+    "styles": ["folk", "country", "jazz", "blues", "rock"],
     "type": "acoustic",
     "priceBand": "$$",
     "levels": ["intermediate", "advanced"],
+    "hands": ["right", "left"],
     "approxPrice": 799,
     "priceNote": "Guitar Center ~$799",
     "blurb": "Balanced acoustic clarity that flatters folk, country, blues fingerstyle, and jazz-leaning acoustics."
@@ -103,6 +111,7 @@
     "type": "acoustic",
     "priceBand": "$$$",
     "levels": ["intermediate", "advanced"],
+    "hands": ["right", "left"],
     "approxPrice": 3599,
     "priceNote": "Typical current street for Standard D-28; confirm GC SKU",
     "blurb": "Deep dreadnought projection for folk, country, classic rock acoustics, and blues."
@@ -115,6 +124,7 @@
     "type": "acoustic",
     "priceBand": "$$",
     "levels": ["beginner", "intermediate", "advanced"],
+    "hands": ["right", "left"],
     "approxPrice": 500,
     "priceNote": "Guitar Center Hummingbird EC Studio ~$499.99",
     "blurb": "Square-shoulder acoustic punch often used for rock rhythm and folk/country songwriting."
@@ -127,6 +137,7 @@
     "type": "acoustic",
     "priceBand": "$",
     "levels": ["intermediate", "advanced"],
+    "hands": ["right"],
     "approxPrice": 300,
     "priceNote": "Dirty 30s series street ~$300 (variant SKUs differ)",
     "blurb": "Metallic resonator bite made for blues slide and rootsy folk/country textures."
@@ -139,6 +150,7 @@
     "type": "electric",
     "priceBand": "$$",
     "levels": ["beginner", "intermediate"],
+    "hands": ["right", "left"],
     "approxPrice": 500,
     "priceNote": "Guitar Center G2622 ~$499.99–$549.99",
     "blurb": "Hollow-body warmth for jazz chords, bluesy leads, and rockabilly edge."
@@ -151,6 +163,7 @@
     "type": "electric",
     "priceBand": "$$$",
     "levels": ["intermediate", "advanced"],
+    "hands": ["right"],
     "approxPrice": 1199,
     "priceNote": "Typical street; confirm current GC listing",
     "blurb": "Full hollow body with a smooth, round jazz voice for chord melody and comps."
@@ -163,6 +176,7 @@
     "type": "electric",
     "priceBand": "$$",
     "levels": ["beginner", "intermediate", "advanced"],
+    "hands": ["right", "left"],
     "approxPrice": 850,
     "priceNote": "Aligned with current Player II street ~$850",
     "blurb": "Twangy snap for country and folk-rock, with enough bite for rock and blues."
@@ -175,6 +189,7 @@
     "type": "electric",
     "priceBand": "$$",
     "levels": ["intermediate", "advanced"],
+    "hands": ["right", "left"],
     "approxPrice": 850,
     "priceNote": "Guitar Center ~$849.99",
     "blurb": "Filter'Tron sparkle for country twang, jazz cleans, and vintage rock."
@@ -187,6 +202,7 @@
     "type": "electric",
     "priceBand": "$$",
     "levels": ["intermediate", "advanced"],
+    "hands": ["right", "left"],
     "approxPrice": 699,
     "priceNote": "Standard Casino street ~$699 (Worn variants often ~$499)",
     "blurb": "Open hollow-body character for rock jangle, blues, and jazz-leaning cleans."
@@ -195,10 +211,11 @@
     "id": "seagull-s6",
     "name": "S6 Original",
     "brand": "Seagull",
-    "styles": ["folk", "blues"],
+    "styles": ["folk", "blues", "rock"],
     "type": "acoustic",
     "priceBand": "$$",
-    "levels": ["beginner", "intermediate"],
+    "levels": ["beginner", "intermediate", "advanced"],
+    "hands": ["right", "left"],
     "approxPrice": 699,
     "priceNote": "Guitar Center ~$699 (was ~$749)",
     "blurb": "Warm Canadian cedar top that rewards folk fingerpicking and intimate blues acoustics."
@@ -211,6 +228,7 @@
     "type": "electric",
     "priceBand": "$$$",
     "levels": ["intermediate", "advanced"],
+    "hands": ["right"],
     "approxPrice": 1200,
     "priceNote": "Guitar Center ~$1,199.99",
     "blurb": "Hybrid electric platform for folk and singer-songwriter tones with rock and blues flexibility."
@@ -223,6 +241,7 @@
     "type": "electric",
     "priceBand": "$$",
     "levels": ["intermediate", "advanced"],
+    "hands": ["right", "left"],
     "approxPrice": 849,
     "priceNote": "Guitar Center ~$849 (sale from ~$949)",
     "blurb": "Coil-splittable versatility spanning rock crunch, metal rhythm, and cleaner jazz lines."
@@ -235,8 +254,107 @@
     "type": "acoustic",
     "priceBand": "$",
     "levels": ["beginner", "intermediate"],
+    "hands": ["right", "left"],
     "approxPrice": 300,
     "priceNote": "Classical CG122MS street ~$300; GC CGX122MS (AE) is higher (~$520)",
     "blurb": "Nylon-string warmth suited to jazz chord work and softer folk fingerstyle."
+  },
+  {
+    "id": "prs-se-silver-sky",
+    "name": "SE Silver Sky",
+    "brand": "PRS",
+    "styles": ["blues", "rock", "folk"],
+    "type": "electric",
+    "priceBand": "$$",
+    "levels": ["beginner", "intermediate", "advanced"],
+    "hands": ["right", "left"],
+    "approxPrice": 899,
+    "priceNote": "Typical street for SE Silver Sky ~$849–$899",
+    "blurb": "John Mayer’s PRS signature platform in the SE line—Strat-style clarity aimed at blues, rock, and clean singer-songwriter tones.",
+    "signatureFor": ["john-mayer"]
+  },
+  {
+    "id": "prs-silver-sky",
+    "name": "Silver Sky",
+    "brand": "PRS",
+    "styles": ["blues", "rock", "folk"],
+    "type": "electric",
+    "priceBand": "$$$",
+    "levels": ["intermediate", "advanced"],
+    "hands": ["right"],
+    "approxPrice": 2799,
+    "priceNote": "Core Silver Sky street often ~$2,699–$2,849; confirm finish SKU",
+    "blurb": "The core PRS John Mayer signature: refined single-coil voice built for expressive blues and modern rock cleans.",
+    "signatureFor": ["john-mayer"]
+  },
+  {
+    "id": "martin-omjm",
+    "name": "OMJM John Mayer",
+    "brand": "Martin",
+    "styles": ["folk", "blues", "rock"],
+    "type": "acoustic",
+    "priceBand": "$$$",
+    "levels": ["intermediate", "advanced"],
+    "hands": ["right"],
+    "approxPrice": 3899,
+    "priceNote": "OMJM signature street often mid–high $3,000s; confirm current GC listing",
+    "blurb": "Martin’s John Mayer signature orchestra model—balanced acoustic clarity for fingerstyle, songwriter rock, and bluesy acoustics.",
+    "signatureFor": ["john-mayer"]
+  },
+  {
+    "id": "taylor-814ce",
+    "name": "814ce",
+    "brand": "Taylor",
+    "styles": ["rock", "folk", "country"],
+    "type": "acoustic",
+    "priceBand": "$$$",
+    "levels": ["intermediate", "advanced"],
+    "hands": ["right", "left"],
+    "approxPrice": 3999,
+    "priceNote": "814ce V-Class street often around ~$3,999; confirm current SKU",
+    "blurb": "Flagship Grand Auditorium Taylor—the kind of stage-ready acoustic John Rzeznik’s Taylor association is built around, with cutaway access for big open-tuned voicings.",
+    "signatureFor": ["john-rzeznik"]
+  },
+  {
+    "id": "taylor-314ce",
+    "name": "314ce",
+    "brand": "Taylor",
+    "styles": ["rock", "folk", "country"],
+    "type": "acoustic",
+    "priceBand": "$$",
+    "levels": ["beginner", "intermediate", "advanced"],
+    "hands": ["right", "left"],
+    "approxPrice": 1999,
+    "priceNote": "314ce street often ~$1,999; confirm current listing",
+    "blurb": "A more reachable Taylor Grand Auditorium in the same family Rzeznik’s Taylor deal points toward—clear, modern acoustic for rock and songwriter parts.",
+    "signatureFor": ["john-rzeznik"]
+  },
+  {
+    "id": "epiphone-slash-les-paul",
+    "name": "Slash Les Paul Standard",
+    "brand": "Epiphone",
+    "styles": ["rock"],
+    "type": "electric",
+    "priceBand": "$$",
+    "levels": ["intermediate", "advanced"],
+    "hands": ["right"],
+    "approxPrice": 899,
+    "priceNote": "Epiphone Slash Les Paul Standard street often ~$899",
+    "blurb": "Slash’s Epiphone signature Les Paul—humbucker rock sustain aimed at Appetite-era crunch without Gibson money.",
+    "signatureFor": ["slash"]
+  },
+  {
+    "id": "martin-000-28ec",
+    "name": "000-28EC Eric Clapton",
+    "brand": "Martin",
+    "styles": ["blues", "rock", "folk"],
+    "type": "acoustic",
+    "priceBand": "$$$",
+    "levels": ["intermediate", "advanced"],
+    "hands": ["right"],
+    "approxPrice": 3999,
+    "priceNote": "000-28EC street often high $3,000s–$4,000; confirm current listing",
+    "blurb": "Clapton’s long-running Martin signature 000—compact blues and soft-rock acoustic projection.",
+    "signatureFor": ["eric-clapton"]
   }
 ]

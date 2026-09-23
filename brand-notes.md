@@ -92,6 +92,33 @@ Turn usage data into pitch material; draft the roadmap slide for won’t-haves (
 - **Out of slice:** handedness, artist, images, claim
 - **Next:** Test on Pages; then Slice 5 (handedness) only after checklist passes
 
+### Slice 5 — Handedness (implemented)
+
+- **What shipped:** Fifth quiz question (right / left / either) → each gear item has `hands[]` → hard filter with style, type, and budget (`either` skips hand filter). Experience still soft-relaxes when needed.
+- **Data:** Most common models tagged `["right", "left"]` when a lefty SKU is commonly sold; a few rarer lefty lines stay `["right"]` only.
+- **UX:** Result cards note “Lefty available” when both hands are tagged; empty state mentions trying Either for hand.
+- **Out of slice:** artist, images, claim
+- **Next:** Test on Pages; then Slice 6 (favorite artist + artist-gear reasoning) only after checklist passes
+
+### Slice 6 — Favorite artist + artist-gear reasoning (implemented)
+
+- **What shipped:** Optional artist `<select>` on the quiz (Skip allowed) → curated `data/artists.json` maps artists to `gearIds` + honest `reason` copy → matching boosts linked gear that still passes style/type/hand/budget filters
+- **Fallback:** If no linked gear survives filters, keep style matches and show a genre-fallback notice; if the list is empty, try the artist’s primary style while keeping other filters
+- **UX:** Results heading can say “you selected [Artist]”; linked non-signature cards get “Because you selected…”; signature cards keep “signature / signed line”; reasoning blurb appears above the list when boosted
+- **Quiz order:** Budget dial stays last (after optional artist)
+- **Roster:** Includes Mayer, Clapton, The Edge, Rzeznik; Taylor Swift replaced with Joni Mitchell; alt-tuning lean (Richards open G, Drake, DiFranco, Page DADGAD notes) in addition to core style heroes
+- **Signatures:** Artists can list `signatureGearIds` (Mayer PRS Silver Sky + Martin OMJM; Rzeznik Taylor 814ce/314ce; Slash Epiphone; Clapton Martin 000-28EC). Sort order: signature → inspired → level → price. Budget still filters.
+- **Out of slice:** images, signup-to-claim, live artist APIs
+- **Next:** Deploy/test on Pages; Phase 1 MVP complete — then Phase 2 validation (classmates / Reddit)
+
+### Phase 3 Slice A — Guitar images & specs (implemented)
+
+- **What shipped:** `data/gear-extras.json` adds `visual` (body-shape key) + `specs` (body / neck / electronics / notable) for every catalog item; `loadGear()` merges extras
+- **UI:** Results cards show a shape silhouette (`js/visuals.js` SVGs) plus a specs block under the blurb
+- **Honesty:** Silhouettes = body family, not product photos; specs are curated summaries to confirm with a retailer
+- **Out of slice:** real product photography, primary-use question, aesthetic/color preference
+- **Next:** Test on Pages; then Phase 3 Slice B (primary use context) or Phase 2 validation
+
 ## Working agreements (how we build)
 
 FindYourSound-specific rules adapted from vibe-coding best practices. Follow these whenever prompting or shipping a slice.

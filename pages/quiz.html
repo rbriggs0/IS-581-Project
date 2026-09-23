@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Find my sound — FindYourSound</title>
-  <meta name="description" content="Pick your style, guitar type, experience, and budget to get matched with pre-made guitars.">
+  <meta name="description" content="Pick your style, guitar type, experience, budget, handedness, and an optional favorite artist to get matched with pre-made guitars.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Source+Sans+3:wght@400;500;600&display=swap" rel="stylesheet">
@@ -22,7 +22,7 @@
     <div class="form-panel">
       <p class="brand-mark">FindYourSound</p>
       <h1>Find my sound</h1>
-      <p class="form-intro">Four questions: music style, acoustic or electric, experience level, and your budget range. We’ll match you with pre-made guitars from our curated list.</p>
+      <p class="form-intro">Answer a few questions—style, type, experience, handedness, optional favorite artist—then set your budget last. We’ll match you with pre-made guitars from our curated list.</p>
 
       <form class="lead-form" id="style-quiz" action="results.html" method="get">
         <fieldset>
@@ -89,6 +89,31 @@
           </label>
         </fieldset>
 
+        <fieldset>
+          <legend>Which hand do you play with?</legend>
+          <label class="choice">
+            <input type="radio" name="hand" value="right" required>
+            Right-handed
+          </label>
+          <label class="choice">
+            <input type="radio" name="hand" value="left">
+            Left-handed
+          </label>
+          <label class="choice">
+            <input type="radio" name="hand" value="either">
+            Either / not sure
+          </label>
+        </fieldset>
+
+        <fieldset class="artist-fieldset">
+          <legend>Favorite artist (optional)</legend>
+          <p class="artist-hint">Pick a guitar hero for inspiration. We’ll float related gear to the top when it still fits your other answers—or fall back to your style. Skip anytime.</p>
+          <label class="visually-hidden" for="artist">Favorite artist</label>
+          <select id="artist" name="artist" class="artist-select">
+            <option value="">Skip — match on style only</option>
+          </select>
+        </fieldset>
+
         <fieldset class="budget-fieldset">
           <legend>What’s your budget range?</legend>
           <div class="budget-dial">
@@ -97,7 +122,7 @@
               <strong id="budget-range-value">$0 – $1,500</strong>
             </div>
             <p class="budget-slider-label">
-              Drag both handles to set a low and high you’re willing to spend (approx. street price).
+              Drag both handles to set a low and high you’re willing to spend (approx. street price). Price follows this range—not your experience answer. Shopping for someone else? Set the budget you have in mind.
             </p>
             <div class="budget-dual">
               <div class="budget-dual-track" aria-hidden="true"></div>
@@ -140,12 +165,21 @@
   </main>
 
   <script type="module">
-    import { formatBudget, BUDGET_MIN, BUDGET_MAX } from "../js/match.js";
+    import {
+      formatBudget,
+      BUDGET_MIN,
+      BUDGET_MAX,
+      loadArtists,
+      artistsByStyle,
+      STYLE_LABELS,
+      STYLES,
+    } from "../js/match.js";
 
     const minSlider = document.getElementById("budgetMin");
     const maxSlider = document.getElementById("budgetMax");
     const readout = document.getElementById("budget-range-value");
     const fill = document.getElementById("budget-dual-fill");
+    const artistSelect = document.getElementById("artist");
 
     function syncBudget(changed) {
       let minVal = Number(minSlider.value);
@@ -169,9 +203,37 @@
       fill.style.width = `${Math.max(0, right - left)}%`;
     }
 
+    async function populateArtists() {
+      try {
+        const artists = await loadArtists();
+        const groups = artistsByStyle(artists);
+        for (const style of STYLES) {
+          const list = groups[style] || [];
+          if (!list.length) continue;
+          const optgroup = document.createElement("optgroup");
+          optgroup.label = STYLE_LABELS[style] || style;
+          for (const artist of list) {
+            const option = document.createElement("option");
+            option.value = artist.id;
+            option.textContent = artist.name;
+            optgroup.appendChild(option);
+          }
+          artistSelect.appendChild(optgroup);
+        }
+      } catch (err) {
+        console.error(err);
+        const option = document.createElement("option");
+        option.value = "";
+        option.textContent = "Artist list unavailable — skip for now";
+        option.disabled = true;
+        artistSelect.appendChild(option);
+      }
+    }
+
     minSlider.addEventListener("input", () => syncBudget("min"));
     maxSlider.addEventListener("input", () => syncBudget("max"));
     syncBudget();
+    populateArtists();
   </script>
 </body>
 </html>

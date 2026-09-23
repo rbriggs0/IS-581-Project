@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Your matches — FindYourSound</title>
-  <meta name="description" content="Pre-made guitar matches based on your style, type, experience, and budget.">
+  <meta name="description" content="Pre-made guitar matches based on your style, type, experience, budget, handedness, and optional artist inspiration.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Source+Sans+3:wght@400;500;600&display=swap" rel="stylesheet">
@@ -23,37 +23,46 @@
       <p class="section-eyebrow">Your matches</p>
       <h1 id="results-heading">Guitars for your sound</h1>
       <p id="results-lead" class="section-lead">Starter matches from our curated list of pre-made guitars—not a custom build.</p>
+      <p id="artist-reason" class="artist-reason" hidden></p>
 
       <div id="results-status" class="results-status" role="status" aria-live="polite">Loading matches…</div>
+      <p id="results-notice" class="results-notice" hidden></p>
       <ul id="results-list" class="results-list" hidden></ul>
 
       <div class="results-actions">
         <a class="btn btn-primary" href="quiz.html">Try again</a>
         <a class="text-link" href="../index.html">Back home</a>
       </div>
-      <p class="results-note">Prices are approximate street estimates for matching—not live store pricing. Claiming a purchase will need signup later.</p>
+      <p class="results-note">Prices are approximate street estimates for matching—not live store pricing. Silhouettes show body shape (not product photos). Specs are curated summaries—confirm details with a retailer. Signature / signed-line picks still respect your budget dial. Claiming a purchase will need signup later.</p>
     </div>
   </main>
 
   <script type="module">
     import {
-      getMatches,
+      getMatchResult,
       loadGear,
+      loadArtists,
       STYLE_LABELS,
       TYPE_LABELS,
       LEVEL_LABELS,
+      HAND_LABELS,
       formatBudget,
       clampBudget,
+      handAvailabilityLabel,
       BUDGET_MIN,
       BUDGET_MAX,
     } from "../js/match.js";
+    import { gearVisualSvg, gearSpecRows } from "../js/visuals.js";
 
     const params = new URLSearchParams(window.location.search);
     const style = (params.get("style") || "").toLowerCase();
     const typeRaw = (params.get("type") || "either").toLowerCase();
     const levelRaw = (params.get("level") || "either").toLowerCase();
+    const handRaw = (params.get("hand") || "either").toLowerCase();
+    const artistId = (params.get("artist") || "").trim();
     const type = typeRaw in TYPE_LABELS ? typeRaw : "either";
     const level = levelRaw in LEVEL_LABELS ? levelRaw : "either";
+    const hand = handRaw in HAND_LABELS ? handRaw : "either";
 
     let budgetMin = clampBudget(params.get("budgetMin") ?? BUDGET_MIN);
     let budgetMax = clampBudget(params.get("budgetMax") ?? BUDGET_MAX);
@@ -70,20 +79,56 @@
 
     const heading = document.getElementById("results-heading");
     const lead = document.getElementById("results-lead");
+    const artistReason = document.getElementById("artist-reason");
     const status = document.getElementById("results-status");
+    const noticeEl = document.getElementById("results-notice");
     const list = document.getElementById("results-list");
 
-    function renderCards(matches) {
-      list.innerHTML = matches
+    function renderSpecs(item) {
+      const rows = gearSpecRows(item);
+      if (!rows.length) return "";
+      return `<dl class="result-specs">${rows
         .map(
-          (item) => `
-        <li class="result-card">
-          <p class="result-brand">${escapeHtml(item.brand)}</p>
-          <h2 class="result-name">${escapeHtml(item.name)}</h2>
-          <p class="result-meta">${escapeHtml(item.type)} · ~${formatBudget(item.approxPrice)}</p>
-          <p class="result-blurb">${escapeHtml(item.blurb)}</p>
-        </li>`
+          (row) =>
+            `<div class="result-spec"><dt>${escapeHtml(row.label)}</dt><dd>${escapeHtml(row.value)}</dd></div>`
         )
+        .join("")}</dl>`;
+    }
+
+    function renderCards(matches, inspiredIds, signatureIds, artist) {
+      list.innerHTML = matches
+        .map((item) => {
+          const handNote = handAvailabilityLabel(item);
+          const metaParts = [
+            escapeHtml(item.type),
+            `~${formatBudget(item.approxPrice)}`,
+          ];
+          if (handNote) metaParts.push(escapeHtml(handNote));
+          let badge = "";
+          if (artist && signatureIds && signatureIds.has(item.id)) {
+            badge = `<p class="result-signature">${escapeHtml(artist.name)} signature / signed line</p>`;
+          } else if (artist && inspiredIds && inspiredIds.has(item.id)) {
+            badge = `<p class="result-inspired">Because you selected ${escapeHtml(artist.name)}</p>`;
+          }
+          const visual = item.visual || item.type || "electric";
+          const media = item.image
+            ? `<img class="result-photo" src="${escapeHtml(item.image)}" alt="${escapeHtml(item.brand)} ${escapeHtml(item.name)}" loading="lazy" width="160" height="200">`
+            : gearVisualSvg(item);
+          return `
+        <li class="result-card">
+          <div class="result-media${item.image ? " result-media-photo" : ""}" data-visual="${escapeHtml(visual)}">
+            ${media}
+          </div>
+          <div class="result-content">
+            <p class="result-brand">${escapeHtml(item.brand)}</p>
+            <h2 class="result-name">${escapeHtml(item.name)}</h2>
+            <p class="result-meta">${metaParts.join(" · ")}</p>
+            ${badge}
+            <p class="result-blurb">${escapeHtml(item.blurb)}</p>
+            ${renderSpecs(item)}
+          </div>
+        </li>`;
+        })
         .join("");
       list.hidden = false;
     }
@@ -100,7 +145,7 @@
       if (!style || !(style in STYLE_LABELS)) {
         heading.textContent = "Pick your preferences first";
         lead.textContent =
-          "Choose style, type, experience, and budget on the quiz to see matches.";
+          "Choose style, type, experience, handedness, and budget on the quiz to see matches.";
         status.innerHTML = `<a class="btn btn-primary" href="quiz.html">Take the quiz</a>`;
         return;
       }
@@ -108,31 +153,64 @@
       const styleLabel = STYLE_LABELS[style];
       const typeLabel = TYPE_LABELS[type];
       const levelLabel = LEVEL_LABELS[level];
+      const handLabel = HAND_LABELS[hand];
       const typePhrase =
         type === "either" ? "acoustic or electric" : typeLabel.toLowerCase();
       const levelPhrase =
         level === "either" ? "any experience level" : levelLabel.toLowerCase();
+      const handPhrase =
+        hand === "either"
+          ? "either handedness"
+          : hand === "left"
+            ? "left-handed"
+            : "right-handed";
       const budgetPhrase = `${formatBudget(budgetMin)} – ${formatBudget(budgetMax)}`;
 
-      heading.textContent = `${styleLabel} · ${typeLabel} · ${levelLabel}`;
-      lead.textContent = `Pre-made ${typePhrase} matches for ${levelPhrase}, tagged for ${styleLabel.toLowerCase()}, priced about ${budgetPhrase}. Scroll if there are several.`;
+      heading.textContent = `${styleLabel} · ${typeLabel} · ${handLabel}`;
+      lead.textContent = `Pre-made ${typePhrase} matches for ${levelPhrase}, ${handPhrase}, tagged for ${styleLabel.toLowerCase()}, priced about ${budgetPhrase}. Scroll if there are several.`;
 
       try {
-        const gear = await loadGear();
-        const matches = getMatches(gear, {
-          style,
-          type,
-          level,
-          budgetMin,
-          budgetMax,
-        });
+        const [gear, artists] = await Promise.all([loadGear(), loadArtists()]);
+        const { matches, notice, artist, artistMode, inspiredIds, signatureIds } =
+          getMatchResult(
+            gear,
+            {
+              style,
+              type,
+              level,
+              hand,
+              artist: artistId,
+              budgetMin,
+              budgetMax,
+            },
+            artists
+          );
+
+        if (artist) {
+          heading.textContent = `${styleLabel} · you selected ${artist.name}`;
+          if (artistMode === "boosted" && artist.reason) {
+            artistReason.textContent = artist.reason;
+            artistReason.hidden = false;
+          } else if (artistMode === "genre-fallback") {
+            artistReason.textContent = `We couldn’t place ${artist.name}’s linked gear inside your filters, so these are style-based matches in the same ballpark.`;
+            artistReason.hidden = false;
+          }
+        }
+
         if (!matches.length) {
           status.textContent =
-            "No guitars in our list for that combo and price range. Widen the dials or try Any level / Either.";
+            "No guitars in our list for that combo and price range yet. Try widening the budget dials, Either for type/hand, or Any level.";
+          noticeEl.hidden = true;
           return;
         }
         status.textContent = `${matches.length} match${matches.length === 1 ? "" : "es"} · ${budgetPhrase}`;
-        renderCards(matches);
+        if (notice) {
+          noticeEl.textContent = notice;
+          noticeEl.hidden = false;
+        } else {
+          noticeEl.hidden = true;
+        }
+        renderCards(matches, inspiredIds, signatureIds, artist);
       } catch (err) {
         console.error(err);
         status.textContent =
