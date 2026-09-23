@@ -782,11 +782,13 @@ em {
 
 .budget-dual-track {
   background: rgba(28, 28, 30, 0.12);
+  z-index: 0;
 }
 
 .budget-dual-range {
   background: var(--wood);
   right: auto;
+  z-index: 1;
 }
 
 .budget-slider {
@@ -800,6 +802,7 @@ em {
   -webkit-appearance: none;
   accent-color: var(--wood);
   cursor: pointer;
+  z-index: 2;
 }
 
 .budget-slider::-webkit-slider-runnable-track {
@@ -836,11 +839,11 @@ em {
 }
 
 .budget-slider-min {
-  z-index: 2;
+  z-index: 3;
 }
 
 .budget-slider-max {
-  z-index: 3;
+  z-index: 4;
 }
 
 .budget-scale {
