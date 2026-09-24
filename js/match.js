@@ -1,7 +1,7 @@
 /**
- * FindYourSound — Slice 1–6 matching
+ * FindYourSound — Slice 1–6 + Phase 3 matching
  * Filters curated gear by style, type, experience, budget, handedness,
- * and optional favorite-artist inspiration (boost + genre fallback).
+ * primary use (soft), and optional favorite-artist inspiration.
  */
 
 export const STYLES = ["rock", "blues", "jazz", "folk", "metal", "country"];
@@ -32,6 +32,15 @@ export const HAND_LABELS = {
   right: "Right-handed",
   left: "Left-handed",
   either: "Either / not sure",
+};
+
+export const USE_LABELS = {
+  practice: "Practice / learning at home",
+  songwriting: "Songwriting",
+  recording: "Recording / studio",
+  live: "Live / gigging",
+  travel: "Travel / on the go",
+  either: "Any use / not sure",
 };
 
 export const BUDGET_MIN = 0;
@@ -122,10 +131,15 @@ function sortArtistPreferred(matches, gearIds) {
   });
 }
 
-/** Signature first, then artist-linked, then level-tagged, then price. */
+/** Signature → artist → use → level → price. */
 function sortMatches(
   matches,
-  { signatureGearIds = [], gearIds = [], level = "either" } = {}
+  {
+    signatureGearIds = [],
+    gearIds = [],
+    level = "either",
+    use = "either",
+  } = {}
 ) {
   const signatures = new Set(
     (Array.isArray(signatureGearIds) ? signatureGearIds : []).map((id) =>
@@ -135,7 +149,8 @@ function sortMatches(
   const preferred = new Set(
     (Array.isArray(gearIds) ? gearIds : []).map((id) => String(id))
   );
-  const want = String(level || "either").toLowerCase();
+  const wantLevel = String(level || "either").toLowerCase();
+  const wantUse = String(use || "either").toLowerCase();
   return [...matches].sort((a, b) => {
     const aSig = signatures.has(a.id) ? 0 : 1;
     const bSig = signatures.has(b.id) ? 0 : 1;
@@ -145,15 +160,27 @@ function sortMatches(
     const bArt = preferred.has(b.id) ? 0 : 1;
     if (aArt !== bArt) return aArt - bArt;
 
-    if (want && want !== "either") {
+    if (wantUse && wantUse !== "either") {
+      const aUses = Array.isArray(a.uses)
+        ? a.uses.map((u) => u.toLowerCase())
+        : [];
+      const bUses = Array.isArray(b.uses)
+        ? b.uses.map((u) => u.toLowerCase())
+        : [];
+      const aUse = aUses.includes(wantUse) ? 0 : 1;
+      const bUse = bUses.includes(wantUse) ? 0 : 1;
+      if (aUse !== bUse) return aUse - bUse;
+    }
+
+    if (wantLevel && wantLevel !== "either") {
       const aLevels = Array.isArray(a.levels)
         ? a.levels.map((l) => l.toLowerCase())
         : [];
       const bLevels = Array.isArray(b.levels)
         ? b.levels.map((l) => l.toLowerCase())
         : [];
-      const aLvl = aLevels.includes(want) ? 0 : 1;
-      const bLvl = bLevels.includes(want) ? 0 : 1;
+      const aLvl = aLevels.includes(wantLevel) ? 0 : 1;
+      const bLvl = bLevels.includes(wantLevel) ? 0 : 1;
       if (aLvl !== bLvl) return aLvl - bLvl;
     }
 
@@ -187,9 +214,10 @@ export function findArtist(artists, artistId) {
  */
 export function getMatchResult(gear, filters = {}, artists = []) {
   const level = String(filters.level || "either").toLowerCase();
+  const use = String(filters.use || "either").toLowerCase();
   const artist = findArtist(artists, filters.artist);
-  // Level is soft: filter without it, then prefer tagged level when sorting
-  const hardFilters = { ...filters, level: "either" };
+  // Level + use are soft: filter without them, then prefer when sorting
+  const hardFilters = { ...filters, level: "either", use: "either" };
   let matches = getMatches(gear, hardFilters);
   let levelRelaxed = false;
   let artistMode = null;
@@ -197,7 +225,7 @@ export function getMatchResult(gear, filters = {}, artists = []) {
   let signatureIds = new Set();
 
   if (level && level !== "either" && matches.length) {
-    const strict = getMatches(gear, filters);
+    const strict = getMatches(gear, { ...filters, use: "either" });
     if (strict.length && strict.length < matches.length) {
       levelRelaxed = true;
     }
@@ -226,6 +254,7 @@ export function getMatchResult(gear, filters = {}, artists = []) {
       signatureGearIds: artist?.signatureGearIds || [],
       gearIds: artistLinkIds(artist),
       level,
+      use,
     });
   }
 
@@ -240,12 +269,14 @@ export function getMatchResult(gear, filters = {}, artists = []) {
         ...filters,
         style,
         level: "either",
+        use: "either",
       });
       if (alt.length) {
         matches = sortMatches(alt, {
           signatureGearIds: artist.signatureGearIds || [],
           gearIds: artistLinkIds(artist),
           level,
+          use,
         });
         inspiredIds = new Set(
           matches
@@ -345,6 +376,7 @@ function mergeGearExtras(gear, extras) {
       visual: extra.visual || item.visual,
       specs: extra.specs || item.specs,
       image: extra.image || item.image,
+      uses: extra.uses || item.uses,
     };
   });
 }

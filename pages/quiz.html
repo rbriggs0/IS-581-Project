@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Find my sound — FindYourSound</title>
-  <meta name="description" content="Pick your style, guitar type, experience, budget, handedness, and an optional favorite artist to get matched with pre-made guitars.">
+  <meta name="description" content="Pick your style, guitar type, experience, handedness, primary use, budget, and an optional favorite artist to get matched with pre-made guitars.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Source+Sans+3:wght@400;500;600&display=swap" rel="stylesheet">
@@ -22,7 +22,7 @@
     <div class="form-panel">
       <p class="brand-mark">FindYourSound</p>
       <h1>Find my sound</h1>
-      <p class="form-intro">Answer a few questions—style, type, experience, handedness, optional favorite artist—then set your budget last. We’ll match you with pre-made guitars from our curated list.</p>
+      <p class="form-intro">Answer a few questions—style, type, experience, handedness, how you’ll use it, optional favorite artist—then set your budget last. We’ll match you with pre-made guitars from our curated list.</p>
 
       <form class="lead-form" id="style-quiz" action="results.html" method="get">
         <fieldset>
@@ -102,6 +102,34 @@
           <label class="choice">
             <input type="radio" name="hand" value="either">
             Either / not sure
+          </label>
+        </fieldset>
+
+        <fieldset>
+          <legend>What’s the main way you’ll use this guitar?</legend>
+          <label class="choice">
+            <input type="radio" name="use" value="practice" required>
+            Practice / learning at home
+          </label>
+          <label class="choice">
+            <input type="radio" name="use" value="songwriting">
+            Songwriting
+          </label>
+          <label class="choice">
+            <input type="radio" name="use" value="recording">
+            Recording / studio
+          </label>
+          <label class="choice">
+            <input type="radio" name="use" value="live">
+            Live / gigging
+          </label>
+          <label class="choice">
+            <input type="radio" name="use" value="travel">
+            Travel / on the go
+          </label>
+          <label class="choice">
+            <input type="radio" name="use" value="either">
+            Any use / not sure
           </label>
         </fieldset>
 

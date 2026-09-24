@@ -46,6 +46,7 @@
       TYPE_LABELS,
       LEVEL_LABELS,
       HAND_LABELS,
+      USE_LABELS,
       formatBudget,
       clampBudget,
       handAvailabilityLabel,
@@ -59,10 +60,12 @@
     const typeRaw = (params.get("type") || "either").toLowerCase();
     const levelRaw = (params.get("level") || "either").toLowerCase();
     const handRaw = (params.get("hand") || "either").toLowerCase();
+    const useRaw = (params.get("use") || "either").toLowerCase();
     const artistId = (params.get("artist") || "").trim();
     const type = typeRaw in TYPE_LABELS ? typeRaw : "either";
     const level = levelRaw in LEVEL_LABELS ? levelRaw : "either";
     const hand = handRaw in HAND_LABELS ? handRaw : "either";
+    const use = useRaw in USE_LABELS ? useRaw : "either";
 
     let budgetMin = clampBudget(params.get("budgetMin") ?? BUDGET_MIN);
     let budgetMax = clampBudget(params.get("budgetMax") ?? BUDGET_MAX);
@@ -154,6 +157,7 @@
       const typeLabel = TYPE_LABELS[type];
       const levelLabel = LEVEL_LABELS[level];
       const handLabel = HAND_LABELS[hand];
+      const useLabel = USE_LABELS[use];
       const typePhrase =
         type === "either" ? "acoustic or electric" : typeLabel.toLowerCase();
       const levelPhrase =
@@ -164,10 +168,12 @@
           : hand === "left"
             ? "left-handed"
             : "right-handed";
+      const usePhrase =
+        use === "either" ? "any primary use" : useLabel.toLowerCase();
       const budgetPhrase = `${formatBudget(budgetMin)} – ${formatBudget(budgetMax)}`;
 
       heading.textContent = `${styleLabel} · ${typeLabel} · ${handLabel}`;
-      lead.textContent = `Pre-made ${typePhrase} matches for ${levelPhrase}, ${handPhrase}, tagged for ${styleLabel.toLowerCase()}, priced about ${budgetPhrase}. Scroll if there are several.`;
+      lead.textContent = `Pre-made ${typePhrase} matches for ${levelPhrase}, ${handPhrase}, aimed at ${usePhrase}, tagged for ${styleLabel.toLowerCase()}, priced about ${budgetPhrase}. Scroll if there are several.`;
 
       try {
         const [gear, artists] = await Promise.all([loadGear(), loadArtists()]);
@@ -179,6 +185,7 @@
               type,
               level,
               hand,
+              use,
               artist: artistId,
               budgetMin,
               budgetMax,

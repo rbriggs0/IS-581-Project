@@ -119,6 +119,14 @@ Turn usage data into pitch material; draft the roadmap slide for won’t-haves (
 - **Out of slice:** real product photography, primary-use question, aesthetic/color preference
 - **Next:** Test on Pages; then Phase 3 Slice B (primary use context) or Phase 2 validation
 
+### Phase 3 Slice B — Primary use context (implemented)
+
+- **What shipped:** Quiz question after handedness (practice / songwriting / recording / live / travel / any) → `uses[]` on each gear item via `gear-extras.json` → soft preference in sort (does not hard-hide other matches)
+- **Order:** Style → type → experience → hand → **use** → optional artist → budget last
+- **UX:** Results lead mentions the chosen use; matching still respects style/type/hand/budget as hard filters
+- **Out of slice:** aesthetic/color preference, signup-to-claim
+- **Next:** Deploy/test on Pages; then Phase 3 Slice C (aesthetic/color) or Phase 2 validation
+
 ## Working agreements (how we build)
 
 FindYourSound-specific rules adapted from vibe-coding best practices. Follow these whenever prompting or shipping a slice.
