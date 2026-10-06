@@ -127,13 +127,25 @@ Turn usage data into pitch material; draft the roadmap slide for won’t-haves (
 - **Out of slice:** aesthetic/color preference, signup-to-claim
 - **Next:** Deploy/test on Pages; then Phase 3 Slice C (aesthetic/color) or Phase 2 validation
 
+### Phase 3 Slice C — Aesthetic/color preference (skipped)
+
+- **Decision:** Not building. User preference is that finish/color matching isn’t needed for the current MVP.
+- **Next:** Phase 2 validation (classmates / Reddit) and/or Phase 4 pitch packaging; other polish only if feedback asks for it
+
+### Engineering controls + Tech Employee Playbook
+
+- **What shipped:** ESLint 10 (with inline HTML scripts), Prettier 3, EditorConfig, Husky + lint-staged pre-commit, `node:test` suites for matching logic and catalog data (98 tests, 80% coverage floor), GitHub Actions CI (lint, format, tests, `npm audit`, gitleaks), CodeQL, live-site smoke test, Dependabot, PR/issue templates, CODEOWNERS, SECURITY.md, Cursor project rules
+- **Playbook:** `docs/PLAYBOOK.md` (also exported to Word / Google Docs) covers language, IDE, Kanban, GitHub Flow, issue tracking, AI guardrails, code quality, testing, and operations
+- **Cleanup:** removed unused `sortLevelPreferred` / `sortArtistPreferred`; one-time Prettier format of the codebase (no visual change verified on quiz and results)
+- **Manual GitHub settings:** branch protection on `main`, Projects Kanban board, labels, secret scanning push protection
+
 ## Working agreements (how we build)
 
 FindYourSound-specific rules adapted from vibe-coding best practices. Follow these whenever prompting or shipping a slice.
 
 1. **PRD before each slice** — Before coding, write a short what / who / how (even a few bullets). Clarity first; then implementation.
 2. **Outline screens and flow** — Sketch quiz → matching → result (and any new screens) before generating UI, so paths aren’t guessed.
-3. **Data + Git first** — Define the curated gear dataset shape before matching logic. Commit after each reviewed change. Don’t ship hard-coded front-end data that only *looks* like a working recommender.
+3. **Data + Git first** — Define the curated gear dataset shape before matching logic. Commit after each reviewed change. Don’t ship hard-coded front-end data that only _looks_ like a working recommender.
 4. **One slice at a time** — Same as Phase 1: one question → logic → visible result → deploy → then the next. No big-bang “build the whole app” prompts.
 5. **Test before the next slice** — Click through locally and on GitHub Pages after each deploy. Check regressions before stacking more features.
 6. **Log decisions** — Note important prompts, rejections, and why (in this file or a simple prompt log) so future you (or a teammate) isn’t reverse-engineering choices.

@@ -1,0 +1,43 @@
+name: Feature slice
+description: A small, shippable vertical slice of user-facing behavior
+title: "feat: "
+labels: ["type: feature"]
+body:
+  - type: textarea
+    id: story
+    attributes:
+      label: User story
+      placeholder: As a gift shopper, I want…, so that…
+    validations:
+      required: true
+  - type: textarea
+    id: acceptance
+    attributes:
+      label: Acceptance criteria
+      description: Checkable outcomes. These become the PR test plan.
+      placeholder: |
+        - [ ] Quiz shows …
+        - [ ] Results page …
+        - [ ] Unit test covers …
+    validations:
+      required: true
+  - type: dropdown
+    id: area
+    attributes:
+      label: Area
+      options:
+        - Quiz (pages/quiz.html)
+        - Results (pages/results.html)
+        - Matching logic (js/match.js)
+        - Catalog data (data/*.json, images/gear)
+        - Landing page / styles
+        - Tooling / CI
+    validations:
+      required: true
+  - type: dropdown
+    id: size
+    attributes:
+      label: Size
+      options: ["S (< half day)", "M (about 1 day)", "L (split it up)"]
+    validations:
+      required: true

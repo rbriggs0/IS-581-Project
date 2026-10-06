@@ -28,7 +28,12 @@
     "id": "the-edge",
     "name": "The Edge",
     "styles": ["rock"],
-    "gearIds": ["fender-player-strat", "fender-player-tele", "fender-acoustasonic-player", "squier-affinity-strat"],
+    "gearIds": [
+      "fender-player-strat",
+      "fender-player-tele",
+      "fender-acoustasonic-player",
+      "squier-affinity-strat"
+    ],
     "reason": "The Edge’s chiming, delay-soaked parts often sit on Strat/Tele platforms. Some U2 parts also use drop and altered tunings—these are approachable Fender-family starting points for that lane.",
     "sourceNote": "Tone and platform inspiration; delay/FX do much of the signature sound. Catalog has no Explorer—Strat/Tele/Acoustasonic stand in."
   },

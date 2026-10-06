@@ -1,0 +1,22 @@
+# Dependencies
+node_modules/
+
+# Secrets — never commit
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+
+# OS / editor
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Local-only course drafts
+*.docx
+~$*
+
+# Test / tooling output
+coverage/
+*.log

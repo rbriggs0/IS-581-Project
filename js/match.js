@@ -103,43 +103,10 @@ export function getMatches(gear, filters = {}) {
   });
 }
 
-function sortLevelPreferred(matches, level) {
-  const want = String(level || "").toLowerCase();
-  return [...matches].sort((a, b) => {
-    const aLevels = Array.isArray(a.levels)
-      ? a.levels.map((l) => l.toLowerCase())
-      : [];
-    const bLevels = Array.isArray(b.levels)
-      ? b.levels.map((l) => l.toLowerCase())
-      : [];
-    const aHit = aLevels.includes(want) ? 0 : 1;
-    const bHit = bLevels.includes(want) ? 0 : 1;
-    if (aHit !== bHit) return aHit - bHit;
-    return (Number(a.approxPrice) || 0) - (Number(b.approxPrice) || 0);
-  });
-}
-
-function sortArtistPreferred(matches, gearIds) {
-  const preferred = new Set(
-    (Array.isArray(gearIds) ? gearIds : []).map((id) => String(id))
-  );
-  return [...matches].sort((a, b) => {
-    const aHit = preferred.has(a.id) ? 0 : 1;
-    const bHit = preferred.has(b.id) ? 0 : 1;
-    if (aHit !== bHit) return aHit - bHit;
-    return (Number(a.approxPrice) || 0) - (Number(b.approxPrice) || 0);
-  });
-}
-
 /** Signature → artist → use → level → price. */
 function sortMatches(
   matches,
-  {
-    signatureGearIds = [],
-    gearIds = [],
-    level = "either",
-    use = "either",
-  } = {}
+  { signatureGearIds = [], gearIds = [], level = "either", use = "either" } = {}
 ) {
   const signatures = new Set(
     (Array.isArray(signatureGearIds) ? signatureGearIds : []).map((id) =>
@@ -200,9 +167,7 @@ function artistLinkIds(artist) {
 export function findArtist(artists, artistId) {
   if (!artistId || !Array.isArray(artists)) return null;
   const want = String(artistId).toLowerCase();
-  return (
-    artists.find((a) => String(a.id || "").toLowerCase() === want) || null
-  );
+  return artists.find((a) => String(a.id || "").toLowerCase() === want) || null;
 }
 
 /**
@@ -285,9 +250,7 @@ export function getMatchResult(gear, filters = {}, artists = []) {
         );
         signatureIds = new Set(
           matches
-            .filter((item) =>
-              (artist.signatureGearIds || []).includes(item.id)
-            )
+            .filter((item) => (artist.signatureGearIds || []).includes(item.id))
             .map((item) => item.id)
         );
         artistMode = "genre-fallback";
@@ -314,7 +277,10 @@ export function getMatchResult(gear, filters = {}, artists = []) {
   };
 }
 
-function buildMatchNotice(filters, { levelRelaxed, matches, artist, artistMode }) {
+function buildMatchNotice(
+  filters,
+  { levelRelaxed, matches, artist, artistMode }
+) {
   if (!matches.length) return null;
 
   if (artist && artistMode === "genre-fallback") {
@@ -329,7 +295,9 @@ function buildMatchNotice(filters, { levelRelaxed, matches, artist, artistMode }
     if (style && artistStyles.length && !artistStyles.includes(style)) {
       return `${artist.name} is often tied more to ${artistStyles
         .map((s) => STYLE_LABELS[s] || s)
-        .join(" / ")}; we kept your ${STYLE_LABELS[style] || style} picks and floated any overlapping inspiration to the top.`;
+        .join(
+          " / "
+        )}; we kept your ${STYLE_LABELS[style] || style} picks and floated any overlapping inspiration to the top.`;
     }
   }
 
@@ -365,7 +333,7 @@ export function artistsDataUrl() {
   return new URL("../data/artists.json", window.location.href).href;
 }
 
-function mergeGearExtras(gear, extras) {
+export function mergeGearExtras(gear, extras) {
   if (!Array.isArray(gear)) return [];
   const map = extras && typeof extras === "object" ? extras : {};
   return gear.map((item) => {
@@ -420,9 +388,7 @@ export function artistsByStyle(artists) {
     }
   }
   for (const style of STYLES) {
-    groups[style].sort((a, b) =>
-      String(a.name).localeCompare(String(b.name))
-    );
+    groups[style].sort((a, b) => String(a.name).localeCompare(String(b.name)));
   }
   return groups;
 }

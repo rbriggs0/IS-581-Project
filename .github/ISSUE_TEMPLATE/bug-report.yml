@@ -1,0 +1,43 @@
+name: Bug report
+description: Something on the site is broken or wrong
+title: "fix: "
+labels: ["type: bug"]
+body:
+  - type: input
+    id: url
+    attributes:
+      label: Page URL
+      placeholder: https://rbriggs0.github.io/IS-581-Project/pages/results.html?style=rock…
+    validations:
+      required: true
+  - type: textarea
+    id: steps
+    attributes:
+      label: Steps to reproduce
+      placeholder: |
+        1. Choose Rock, Acoustic, Advanced…
+        2. Set budget to …
+        3. Click Find my match
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected vs. actual
+    validations:
+      required: true
+  - type: dropdown
+    id: severity
+    attributes:
+      label: Severity
+      options:
+        - "SEV1 — site down / quiz unusable"
+        - "SEV2 — wrong matches or broken feature"
+        - "SEV3 — cosmetic / copy"
+    validations:
+      required: true
+  - type: input
+    id: browser
+    attributes:
+      label: Browser and device
+      placeholder: Chrome 140 on Windows 11

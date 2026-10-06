@@ -1,0 +1,26 @@
+---
+description: FindYourSound guardrails for every AI agent session
+alwaysApply: true
+---
+
+# FindYourSound — AI agent guardrails
+
+## Stack (do not change without an approved issue)
+
+- Static site: HTML, CSS, vanilla JavaScript ES modules, JSON data. No framework, no bundler, no backend.
+- Hosted on GitHub Pages from `main`. Pages live under `pages/`; shared logic in `js/`; catalog data in `data/`.
+- Matching logic lives in `js/match.js`. Any change there needs a matching update in `tests/match.test.js`.
+
+## Hard rules
+
+- Never paste, generate, or commit secrets, API keys, tokens, or `.env` contents.
+- Never push directly to `main`. Work on a `feat/`, `fix/`, `docs/`, or `chore/` branch and open a PR.
+- Never add a runtime dependency (anything loaded by the browser) without an approved issue.
+- Never use `eval`, `new Function`, or `innerHTML` with user-controlled values (URL params, form input). Use `textContent` or escape first.
+- Never invent guitar specs, prices, or artist endorsements. Mark curated links as "inspiration" unless an official signature exists, and record the source in `artists.json` `sourceNote`.
+
+## Before handing back a change
+
+- Run `npm run check` (ESLint + Prettier check + `node --test`) and report the result.
+- Keep diffs small and scoped to one issue (one vertical slice).
+- Summarize what changed and why so the human reviewer can approve the PR.

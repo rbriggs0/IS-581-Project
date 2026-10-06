@@ -1,0 +1,14 @@
+---
+description: Conventions for catalog data and gear images
+globs: data/**/*.json,images/gear/**
+alwaysApply: false
+---
+
+# Catalog data conventions
+
+- `data/gear.json` holds core fields: `id`, `brand`, `name`, `styles`, `type`, `levels`, `hands`, `approxPrice`, `priceNote`, `blurb`, optional `signatureFor`.
+- `data/gear-extras.json` is keyed by gear `id` and holds `visual`, `specs`, `image`, `uses`.
+- Every gear `id` must have an extras entry and an image at `images/gear/<id>.png`, referenced as `../images/gear/<id>.png`.
+- `data/artists.json` `gearIds` and `signatureGearIds` must reference existing gear ids. Signature ids must also appear in `gearIds`.
+- Allowed `styles`: rock, blues, jazz, folk, metal, country. Allowed `uses`: practice, songwriting, recording, live, travel.
+- The data integrity tests in `tests/data.test.js` enforce these rules; run `npm test` after editing data.

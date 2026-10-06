@@ -1,0 +1,36 @@
+name: Live site smoke test
+
+on:
+  page_build:
+  workflow_dispatch:
+  schedule:
+    - cron: "0 14 * * *"
+
+permissions:
+  contents: read
+
+jobs:
+  smoke:
+    runs-on: ubuntu-latest
+    env:
+      SITE: https://rbriggs0.github.io/IS-581-Project
+    steps:
+      - name: Wait for Pages CDN
+        run: sleep 60
+
+      - name: Key pages and data return 200
+        run: |
+          set -e
+          for path in / /pages/quiz.html /pages/results.html \
+                      /data/gear.json /data/gear-extras.json /data/artists.json \
+                      /js/match.js /styles.css; do
+            code=$(curl -s -o /dev/null -w "%{http_code}" "$SITE$path")
+            echo "$code $path"
+            test "$code" = "200"
+          done
+
+      - name: Catalog JSON parses and has 27 guitars
+        run: |
+          count=$(curl -s "$SITE/data/gear.json" | jq 'length')
+          echo "gear count: $count"
+          test "$count" -ge 27

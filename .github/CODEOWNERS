@@ -1,0 +1,6 @@
+# Every PR needs approval from a code owner before merge (enforced by branch protection on main).
+* @rbriggs0
+
+/js/match.js @rbriggs0
+/data/ @rbriggs0
+/.github/ @rbriggs0
