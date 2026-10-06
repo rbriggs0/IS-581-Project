@@ -12,7 +12,7 @@ This playbook is how we build and ship FindYourSound, a guitar-matching quiz tha
 | Quiz (main product page)             | https://rbriggs0.github.io/IS-581-Project/pages/quiz.html             |
 | Source code                          | https://github.com/rbriggs0/IS-581-Project                            |
 | Issues                               | https://github.com/rbriggs0/IS-581-Project/issues                     |
-| Kanban board                         | https://github.com/rbriggs0/IS-581-Project/projects                   |
+| Kanban board                         | https://github.com/users/rbriggs0/projects/1/views/2                  |
 | CI runs (GitHub Actions)             | https://github.com/rbriggs0/IS-581-Project/actions                    |
 | Security alerts (CodeQL, Dependabot) | https://github.com/rbriggs0/IS-581-Project/security                   |
 | This playbook (source)               | https://github.com/rbriggs0/IS-581-Project/blob/main/docs/PLAYBOOK.md |
@@ -250,6 +250,7 @@ Configured under **Settings → Branches → Branch protection rules → `main`*
 - Require status checks to pass: `Lint, format, test, audit`, `Secret scan (gitleaks)`, `Analyze JavaScript`
 - Require branches to be up to date before merging
 - Require conversation resolution before merging
+- Require linear history (squash merges only, no merge commits)
 - Block force pushes and deletions
 - Also, under **Settings → General → Pull Requests:** allow squash merging only, and turn on "Automatically delete head branches"
 
@@ -267,7 +268,8 @@ When only one developer is active, GitHub does not let you approve your own PR. 
 All work is tracked in **GitHub Issues** and visualized on a **GitHub Projects** board.
 
 - **Issues:** https://github.com/rbriggs0/IS-581-Project/issues
-- **Kanban board:** https://github.com/rbriggs0/IS-581-Project/projects
+- **Kanban board (public, no login needed to view):** https://github.com/users/rbriggs0/projects/1/views/2
+- **Starter tasks for new hires:** https://github.com/rbriggs0/IS-581-Project/labels/good%20first%20issue
 
 We chose GitHub over Jira or Trello because issues, code, PRs, and CI live in one place. Writing `Closes #42` in a PR closes the issue and moves its card to Done automatically.
 
@@ -294,11 +296,16 @@ Status is tracked by the board column, not by labels.
 
 ### Board automation
 
-The project uses GitHub Projects' built-in workflows:
+The board uses GitHub Projects' built-in workflows (board menu **⋯ → Workflows**):
 
-- New issue added → **Backlog**
-- Linked PR opened → **In Review**
-- Issue closed or PR merged → **Done**
+| Workflow                     | Sets Status to |
+| ---------------------------- | -------------- |
+| Item added to project        | Backlog        |
+| Pull request linked to issue | In Review      |
+| Item closed                  | Done           |
+| Pull request merged          | Done           |
+
+Add new issues to the board from the issue sidebar (**Projects → FindYourSound Kanban**).
 
 ### Bug severity and response times
 
