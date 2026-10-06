@@ -87,7 +87,7 @@ We use **Cursor** ([download](https://cursor.com/download)), an editor built on 
    - GitHub Actions (`github.vscode-github-actions`)
    - GitHub Pull Requests (`github.vscode-pull-request-github`)
    - Live Server (`ritwickdey.liveserver`)
-7. In the integrated terminal (`` Ctrl+` ``), run `npm install`. This installs the dev tools and the pre-commit hook.
+7. Open the integrated terminal (View → Terminal) and run `npm install`. This installs the dev tools and the pre-commit hook.
 8. Run `npm start`. The quiz opens at http://localhost:8080/pages/quiz.html.
 9. Run `npm run check`. You are set up when lint, format check, and all tests pass.
 10. Confirm the AI rules loaded: Cursor Settings → Rules should list `project-guardrails` (always on) and `data-conventions`.
