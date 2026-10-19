@@ -33,6 +33,6 @@
     "http-server": "^14.1.1",
     "husky": "^9.1.7",
     "lint-staged": "^17.6.0",
-    "prettier": "^3.9.9"
+    "prettier": "^3.9.10"
   }
 }
