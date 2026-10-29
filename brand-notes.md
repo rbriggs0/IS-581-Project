@@ -140,7 +140,7 @@ Turn usage data into pitch material; draft the roadmap slide for won’t-haves (
 
 ### Feedback Slice B — Popular in Style rail (implemented)
 
-- **What shipped:** `getPopularInStyle` picks up to 5 catalog guitars in the quiz style (prefer same type, then lowest `approxPrice`), excluding current match IDs. Results aside titled “Popular in [Style]” with honesty disclaimer—not live purchases. Desktop sidebar; stacks below matches on smaller screens.
+- **What shipped:** `getPopularInStyle` picks up to 5 catalog guitars in the quiz style (prefer same type, then lowest `approxPrice`), excluding current match IDs. Results section titled “Popular in [Style]” with honesty disclaimer—not live purchases. Placed **below** the match grid so matches stay together (responsive 1/2/3-col popular cards).
 - **Out of slice:** compare mode; fake timestamps / “buyers purchased” copy
 - **Next:** Feedback Slice C (compare mode)
 
