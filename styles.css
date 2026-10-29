@@ -933,11 +933,12 @@ em {
 }
 
 .results-layout {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: var(--space-xl);
+  display: block;
   margin: 0 0 var(--space-lg);
-  align-items: start;
+}
+
+.results-layout .results-list {
+  width: 100%;
 }
 
 .results-list {
@@ -1141,9 +1142,14 @@ em {
 }
 
 .popular-rail {
+  display: block;
+  width: 100%;
+  max-width: 100%;
+  margin: 0 0 var(--space-lg);
   padding: var(--space-md) 0 0;
   background: transparent;
   border-top: 2px solid var(--wood);
+  clear: both;
 }
 
 .popular-heading {
