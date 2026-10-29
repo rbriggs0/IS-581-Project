@@ -144,6 +144,12 @@ Turn usage data into pitch material; draft the roadmap slide for won’t-haves (
 - **Out of slice:** compare mode; fake timestamps / “buyers purchased” copy
 - **Next:** Feedback Slice C (compare mode)
 
+### Feedback Slice C — Compare mode (implemented)
+
+- **What shipped:** Compare checkbox on each match card (max 3). Sticky tray with thumbnails + Compare N / Clear. Side-by-side panel with aligned rows (photo, model, type, price, hands, levels, uses, key specs). Back to matches / Escape keeps selections.
+- **Out of slice:** comparing Popular-rail items that aren’t in the match list; purchase claiming
+- **Next:** Phase 2 validation with classmates / Reddit
+
 ### Engineering controls + Tech Employee Playbook
 
 - **What shipped:** ESLint 10 (with inline HTML scripts), Prettier 3, EditorConfig, Husky + lint-staged pre-commit, `node:test` suites for matching logic and catalog data (98 tests, 80% coverage floor), GitHub Actions CI (lint, format, tests, `npm audit`, gitleaks), CodeQL, live-site smoke test, Dependabot, PR/issue templates, CODEOWNERS, SECURITY.md, Cursor project rules

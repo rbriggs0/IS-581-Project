@@ -61,6 +61,23 @@
           </aside>
         </div>
 
+        <section
+          id="compare-panel"
+          class="compare-panel"
+          hidden
+          aria-labelledby="compare-panel-heading"
+        >
+          <div class="compare-panel-toolbar">
+            <h2 id="compare-panel-heading" class="compare-panel-heading">
+              Compare guitars
+            </h2>
+            <button type="button" class="btn btn-secondary" id="compare-back">
+              Back to matches
+            </button>
+          </div>
+          <div id="compare-grid" class="compare-grid"></div>
+        </section>
+
         <div class="results-actions">
           <a class="btn btn-primary" href="quiz.html">Try again</a>
           <a class="text-link" href="../index.html">Back home</a>
@@ -74,6 +91,36 @@
         </p>
       </div>
     </main>
+
+    <div
+      id="compare-tray"
+      class="compare-tray"
+      hidden
+      role="region"
+      aria-label="Compare selection"
+    >
+      <div class="compare-tray-inner container">
+        <ul id="compare-tray-list" class="compare-tray-list"></ul>
+        <p id="compare-tray-hint" class="compare-tray-hint" hidden></p>
+        <div class="compare-tray-actions">
+          <button
+            type="button"
+            class="btn btn-primary"
+            id="compare-open"
+            disabled
+          >
+            Compare
+          </button>
+          <button
+            type="button"
+            class="text-link compare-clear"
+            id="compare-clear"
+          >
+            Clear
+          </button>
+        </div>
+      </div>
+    </div>
 
     <script type="module">
       import {
@@ -129,6 +176,28 @@
       const popularRail = document.getElementById("popular-rail");
       const popularHeading = document.getElementById("popular-heading");
       const popularList = document.getElementById("popular-list");
+      const compareTray = document.getElementById("compare-tray");
+      const compareTrayList = document.getElementById("compare-tray-list");
+      const compareTrayHint = document.getElementById("compare-tray-hint");
+      const compareOpen = document.getElementById("compare-open");
+      const compareClear = document.getElementById("compare-clear");
+      const comparePanel = document.getElementById("compare-panel");
+      const compareGrid = document.getElementById("compare-grid");
+      const compareBack = document.getElementById("compare-back");
+
+      const COMPARE_MAX = 3;
+      /** @type {Map<string, object>} */
+      let matchesById = new Map();
+      /** @type {string[]} */
+      let selectedIds = [];
+
+      function escapeHtml(value) {
+        return String(value)
+          .replaceAll("&", "&amp;")
+          .replaceAll("<", "&lt;")
+          .replaceAll(">", "&gt;")
+          .replaceAll('"', "&quot;");
+      }
 
       function renderSpecs(item) {
         const rows = gearSpecRows(item);
@@ -139,6 +208,159 @@
               `<div class="result-spec"><dt>${escapeHtml(row.label)}</dt><dd>${escapeHtml(row.value)}</dd></div>`
           )
           .join("")}</dl>`;
+      }
+
+      function mediaHtml(item, photoClass, width, height) {
+        if (item.image) {
+          return `<img class="${photoClass}" src="${escapeHtml(item.image)}" alt="${escapeHtml(item.brand)} ${escapeHtml(item.name)}" loading="lazy" width="${width}" height="${height}">`;
+        }
+        return gearVisualSvg(item);
+      }
+
+      function syncCompareCheckboxes() {
+        list.querySelectorAll(".compare-toggle input").forEach((input) => {
+          input.checked = selectedIds.includes(input.value);
+        });
+      }
+
+      function updateCompareTray() {
+        const count = selectedIds.length;
+        document.body.classList.toggle("has-compare-tray", count > 0);
+        if (count === 0) {
+          compareTray.hidden = true;
+          compareTrayList.innerHTML = "";
+          compareTrayHint.hidden = true;
+          compareOpen.disabled = true;
+          compareOpen.textContent = "Compare";
+          return;
+        }
+        compareTray.hidden = false;
+        compareTrayList.innerHTML = selectedIds
+          .map((id) => {
+            const item = matchesById.get(id);
+            if (!item) return "";
+            return `<li class="compare-tray-item">
+              <span class="compare-tray-thumb">${mediaHtml(item, "compare-tray-photo", 40, 50)}</span>
+              <span class="compare-tray-label">${escapeHtml(item.brand)} ${escapeHtml(item.name)}</span>
+            </li>`;
+          })
+          .join("");
+        compareOpen.disabled = count < 2;
+        compareOpen.textContent = `Compare ${count}`;
+        compareTrayHint.hidden = true;
+      }
+
+      function showCompareLimitHint() {
+        compareTrayHint.textContent = `You can compare up to ${COMPARE_MAX} guitars.`;
+        compareTrayHint.hidden = false;
+      }
+
+      function setSelected(id, on) {
+        if (on) {
+          if (selectedIds.includes(id)) return;
+          if (selectedIds.length >= COMPARE_MAX) {
+            showCompareLimitHint();
+            syncCompareCheckboxes();
+            updateCompareTray();
+            return;
+          }
+          selectedIds.push(id);
+        } else {
+          selectedIds = selectedIds.filter((x) => x !== id);
+        }
+        syncCompareCheckboxes();
+        updateCompareTray();
+      }
+
+      function clearSelection() {
+        selectedIds = [];
+        syncCompareCheckboxes();
+        updateCompareTray();
+        hideComparePanel();
+      }
+
+      function hideComparePanel() {
+        comparePanel.hidden = true;
+        layout.hidden = false;
+        document.body.classList.remove("compare-mode");
+      }
+
+      function showComparePanel() {
+        const items = selectedIds
+          .map((id) => matchesById.get(id))
+          .filter(Boolean);
+        if (items.length < 2) return;
+
+        const levelsLabel = (item) =>
+          Array.isArray(item.levels) ? item.levels.join(", ") : "—";
+        const usesLabel = (item) =>
+          Array.isArray(item.uses) ? item.uses.join(", ") : "—";
+        const handLabel = (item) =>
+          handAvailabilityLabel(item) ||
+          (Array.isArray(item.hands) ? item.hands.join(", ") : "right");
+        const specMap = (item) => {
+          const map = {};
+          for (const row of gearSpecRows(item)) map[row.label] = row.value;
+          return map;
+        };
+        const maps = items.map(specMap);
+        const specLabels = ["Body", "Neck", "Electronics", "Notable"];
+
+        const row = (label, values) => `
+          <div class="compare-row">
+            <div class="compare-row-label">${escapeHtml(label)}</div>
+            <div class="compare-row-values" style="--compare-cols: ${items.length}">
+              ${values.map((v) => `<div class="compare-cell">${v}</div>`).join("")}
+            </div>
+          </div>`;
+
+        compareGrid.innerHTML = [
+          row(
+            "Photo",
+            items.map(
+              (item) =>
+                `<div class="compare-media${item.image ? " compare-media-photo" : ""}">${mediaHtml(item, "compare-photo", 120, 150)}</div>`
+            )
+          ),
+          row(
+            "Model",
+            items.map(
+              (item) =>
+                `<p class="compare-brand">${escapeHtml(item.brand)}</p><p class="compare-name">${escapeHtml(item.name)}</p>`
+            )
+          ),
+          row(
+            "Type",
+            items.map((item) => escapeHtml(item.type || "—"))
+          ),
+          row(
+            "Approx. price",
+            items.map((item) => `~${formatBudget(item.approxPrice)}`)
+          ),
+          row(
+            "Handedness",
+            items.map((item) => escapeHtml(handLabel(item)))
+          ),
+          row(
+            "Levels",
+            items.map((item) => escapeHtml(levelsLabel(item)))
+          ),
+          row(
+            "Primary uses",
+            items.map((item) => escapeHtml(usesLabel(item)))
+          ),
+          ...specLabels.map((label) =>
+            row(
+              label,
+              maps.map((m) => escapeHtml(m[label] || "—"))
+            )
+          ),
+        ].join("");
+
+        layout.hidden = true;
+        comparePanel.hidden = false;
+        document.body.classList.add("compare-mode");
+        comparePanel.scrollIntoView({ behavior: "smooth", block: "start" });
       }
 
       function renderCards(matches, inspiredIds, signatureIds, artist) {
@@ -157,13 +379,11 @@
               badge = `<p class="result-inspired">Because you selected ${escapeHtml(artist.name)}</p>`;
             }
             const visual = item.visual || item.type || "electric";
-            const media = item.image
-              ? `<img class="result-photo" src="${escapeHtml(item.image)}" alt="${escapeHtml(item.brand)} ${escapeHtml(item.name)}" loading="lazy" width="160" height="200">`
-              : gearVisualSvg(item);
+            const checked = selectedIds.includes(item.id) ? " checked" : "";
             return `
-        <li class="result-card">
+        <li class="result-card" data-gear-id="${escapeHtml(item.id)}">
           <div class="result-media${item.image ? " result-media-photo" : ""}" data-visual="${escapeHtml(visual)}">
-            ${media}
+            ${mediaHtml(item, "result-photo", 160, 200)}
           </div>
           <div class="result-content">
             <p class="result-brand">${escapeHtml(item.brand)}</p>
@@ -172,6 +392,10 @@
             ${badge}
             <p class="result-blurb">${escapeHtml(item.blurb)}</p>
             ${renderSpecs(item)}
+            <label class="compare-toggle">
+              <input type="checkbox" value="${escapeHtml(item.id)}"${checked}>
+              <span>Compare</span>
+            </label>
           </div>
         </li>`;
           })
@@ -188,13 +412,10 @@
         popularList.innerHTML = items
           .map((item) => {
             const visual = item.visual || item.type || "electric";
-            const media = item.image
-              ? `<img class="popular-photo" src="${escapeHtml(item.image)}" alt="${escapeHtml(item.brand)} ${escapeHtml(item.name)}" loading="lazy" width="72" height="90">`
-              : gearVisualSvg(item);
             return `
         <li class="popular-card">
           <div class="popular-media${item.image ? " popular-media-photo" : ""}" data-visual="${escapeHtml(visual)}">
-            ${media}
+            ${mediaHtml(item, "popular-photo", 72, 90)}
           </div>
           <div class="popular-content">
             <p class="popular-brand">${escapeHtml(item.brand)}</p>
@@ -207,13 +428,21 @@
         popularRail.hidden = false;
       }
 
-      function escapeHtml(value) {
-        return String(value)
-          .replaceAll("&", "&amp;")
-          .replaceAll("<", "&lt;")
-          .replaceAll(">", "&gt;")
-          .replaceAll('"', "&quot;");
-      }
+      list.addEventListener("change", (event) => {
+        const input = event.target;
+        if (!(input instanceof HTMLInputElement)) return;
+        if (!input.closest(".compare-toggle")) return;
+        setSelected(input.value, input.checked);
+      });
+
+      compareClear.addEventListener("click", () => clearSelection());
+      compareOpen.addEventListener("click", () => showComparePanel());
+      compareBack.addEventListener("click", () => hideComparePanel());
+      document.addEventListener("keydown", (event) => {
+        if (event.key === "Escape" && !comparePanel.hidden) {
+          hideComparePanel();
+        }
+      });
 
       async function init() {
         if (!style || !(style in STYLE_LABELS)) {
@@ -299,6 +528,7 @@
           } else {
             noticeEl.hidden = true;
           }
+          matchesById = new Map(matches.map((item) => [item.id, item]));
           renderCards(matches, inspiredIds, signatureIds, artist);
           const popular = getPopularInStyle(gear, {
             style,
@@ -308,6 +538,7 @@
           });
           renderPopular(popular, styleLabel);
           layout.hidden = false;
+          updateCompareTray();
         } catch (err) {
           console.error(err);
           status.textContent =
