@@ -132,6 +132,12 @@ Turn usage data into pitch material; draft the roadmap slide for won’t-haves (
 - **Decision:** Not building. User preference is that finish/color matching isn’t needed for the current MVP.
 - **Next:** Phase 2 validation (classmates / Reddit) and/or Phase 4 pitch packaging; other polish only if feedback asks for it
 
+### Feedback Slice A — Multi-column match grid (implemented)
+
+- **What shipped:** Results wrap widened (~76rem). Match list is a responsive CSS grid: 1 column mobile, 2 from 700px, 3 from 1100px. Removed the tall fixed max-height scroll so cards can sit side by side for scanning.
+- **Out of slice:** Popular in Style rail, compare mode
+- **Next:** Feedback Slice B (Popular in Style)
+
 ### Engineering controls + Tech Employee Playbook
 
 - **What shipped:** ESLint 10 (with inline HTML scripts), Prettier 3, EditorConfig, Husky + lint-staged pre-commit, `node:test` suites for matching logic and catalog data (98 tests, 80% coverage floor), GitHub Actions CI (lint, format, tests, `npm audit`, gitleaks), CodeQL, live-site smoke test, Dependabot, PR/issue templates, CODEOWNERS, SECURITY.md, Cursor project rules
