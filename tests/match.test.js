@@ -3,6 +3,7 @@ import assert from "node:assert/strict";
 import {
   getMatches,
   getMatchResult,
+  getPopularInStyle,
   findArtist,
   formatBudget,
   clampBudget,
@@ -163,6 +164,45 @@ describe("getMatchResult (soft preferences and artists)", () => {
   it("shows no notice when no preference was relaxed", () => {
     const { notice } = getMatchResult(gear, { style: "jazz" });
     assert.equal(notice, null);
+  });
+});
+
+describe("getPopularInStyle", () => {
+  it("returns nothing without a style or for non-array gear", () => {
+    assert.deepEqual(getPopularInStyle(gear, {}), []);
+    assert.deepEqual(getPopularInStyle(null, { style: "rock" }), []);
+  });
+
+  it("keeps only the chosen style and respects limit", () => {
+    const popular = getPopularInStyle(gear, { style: "jazz", limit: 3 });
+    assert.equal(popular.length, 3);
+    for (const item of popular) assert.ok(item.styles.includes("jazz"));
+  });
+
+  it("excludes match ids already shown", () => {
+    const matches = getMatches(gear, { style: "rock", budgetMax: 400 });
+    const excludeIds = ids(matches);
+    const popular = getPopularInStyle(gear, {
+      style: "rock",
+      excludeIds,
+      limit: 5,
+    });
+    assert.ok(popular.length > 0);
+    for (const item of popular) assert.ok(!excludeIds.includes(item.id));
+  });
+
+  it("prefers the quiz type, then lowest price", () => {
+    const popular = getPopularInStyle(gear, {
+      style: "rock",
+      type: "acoustic",
+      limit: 4,
+    });
+    assert.ok(popular.length > 0);
+    assert.equal(popular[0].type, "acoustic");
+    const acoustics = popular.filter((item) => item.type === "acoustic");
+    for (let i = 1; i < acoustics.length; i += 1) {
+      assert.ok(acoustics[i].approxPrice >= acoustics[i - 1].approxPrice);
+    }
   });
 });
 

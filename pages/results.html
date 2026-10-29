@@ -43,7 +43,23 @@
           Loading matches…
         </div>
         <p id="results-notice" class="results-notice" hidden></p>
-        <ul id="results-list" class="results-list" hidden></ul>
+        <div class="results-layout" id="results-layout" hidden>
+          <ul id="results-list" class="results-list"></ul>
+          <aside
+            id="popular-rail"
+            class="popular-rail"
+            aria-labelledby="popular-heading"
+            hidden
+          >
+            <h2 id="popular-heading" class="popular-heading">
+              Popular in style
+            </h2>
+            <p class="popular-disclaimer">
+              Curated catalog picks in your style—not live purchase data.
+            </p>
+            <ul id="popular-list" class="popular-list"></ul>
+          </aside>
+        </div>
 
         <div class="results-actions">
           <a class="btn btn-primary" href="quiz.html">Try again</a>
@@ -62,6 +78,7 @@
     <script type="module">
       import {
         getMatchResult,
+        getPopularInStyle,
         loadGear,
         loadArtists,
         STYLE_LABELS,
@@ -107,7 +124,11 @@
       const artistReason = document.getElementById("artist-reason");
       const status = document.getElementById("results-status");
       const noticeEl = document.getElementById("results-notice");
+      const layout = document.getElementById("results-layout");
       const list = document.getElementById("results-list");
+      const popularRail = document.getElementById("popular-rail");
+      const popularHeading = document.getElementById("popular-heading");
+      const popularList = document.getElementById("popular-list");
 
       function renderSpecs(item) {
         const rows = gearSpecRows(item);
@@ -155,7 +176,35 @@
         </li>`;
           })
           .join("");
-        list.hidden = false;
+      }
+
+      function renderPopular(items, styleLabel) {
+        if (!items.length) {
+          popularRail.hidden = true;
+          popularList.innerHTML = "";
+          return;
+        }
+        popularHeading.textContent = `Popular in ${styleLabel}`;
+        popularList.innerHTML = items
+          .map((item) => {
+            const visual = item.visual || item.type || "electric";
+            const media = item.image
+              ? `<img class="popular-photo" src="${escapeHtml(item.image)}" alt="${escapeHtml(item.brand)} ${escapeHtml(item.name)}" loading="lazy" width="72" height="90">`
+              : gearVisualSvg(item);
+            return `
+        <li class="popular-card">
+          <div class="popular-media${item.image ? " popular-media-photo" : ""}" data-visual="${escapeHtml(visual)}">
+            ${media}
+          </div>
+          <div class="popular-content">
+            <p class="popular-brand">${escapeHtml(item.brand)}</p>
+            <p class="popular-name">${escapeHtml(item.name)}</p>
+            <p class="popular-meta">${escapeHtml(item.type)} · ~${formatBudget(item.approxPrice)}</p>
+          </div>
+        </li>`;
+          })
+          .join("");
+        popularRail.hidden = false;
       }
 
       function escapeHtml(value) {
@@ -251,6 +300,14 @@
             noticeEl.hidden = true;
           }
           renderCards(matches, inspiredIds, signatureIds, artist);
+          const popular = getPopularInStyle(gear, {
+            style,
+            type,
+            excludeIds: matches.map((item) => item.id),
+            limit: 5,
+          });
+          renderPopular(popular, styleLabel);
+          layout.hidden = false;
         } catch (err) {
           console.error(err);
           status.textContent =

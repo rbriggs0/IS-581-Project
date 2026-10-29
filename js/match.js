@@ -422,3 +422,44 @@ export function handAvailabilityLabel(item) {
   }
   return null;
 }
+
+/**
+ * Curated “Popular in [style]” picks for the results rail.
+ * Same style; prefer matching quiz type when set; then lowest approxPrice.
+ * Excludes IDs already shown as matches. Not live purchase data.
+ *
+ * @param {Array<{id: string, styles?: string[], type?: string, approxPrice?: number}>} gear
+ * @param {{ style?: string, type?: string, excludeIds?: Iterable<string>, limit?: number }} opts
+ */
+export function getPopularInStyle(
+  gear,
+  { style = "", type = "either", excludeIds = [], limit = 5 } = {}
+) {
+  if (!Array.isArray(gear)) return [];
+  const wantStyle = String(style || "").toLowerCase();
+  if (!wantStyle) return [];
+  const wantType = String(type || "either").toLowerCase();
+  const excluded = new Set(
+    [...(excludeIds || [])].map((id) => String(id)).filter(Boolean)
+  );
+  const max = Math.max(0, Number(limit) || 0);
+
+  const candidates = gear.filter((item) => {
+    if (!item || excluded.has(String(item.id))) return false;
+    const styles = Array.isArray(item.styles)
+      ? item.styles.map((s) => String(s).toLowerCase())
+      : [];
+    return styles.includes(wantStyle);
+  });
+
+  candidates.sort((a, b) => {
+    if (wantType && wantType !== "either") {
+      const aType = String(a.type || "").toLowerCase() === wantType ? 0 : 1;
+      const bType = String(b.type || "").toLowerCase() === wantType ? 0 : 1;
+      if (aType !== bType) return aType - bType;
+    }
+    return (Number(a.approxPrice) || 0) - (Number(b.approxPrice) || 0);
+  });
+
+  return candidates.slice(0, max);
+}
