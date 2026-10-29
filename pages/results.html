@@ -14,7 +14,7 @@
       href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Source+Sans+3:wght@400;500;600&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="../styles.css" />
+    <link rel="stylesheet" href="../styles.css?v=popular-below" />
   </head>
   <body class="form-page results-page">
     <header class="site-header">
@@ -45,21 +45,19 @@
         <p id="results-notice" class="results-notice" hidden></p>
         <div class="results-layout" id="results-layout" hidden>
           <ul id="results-list" class="results-list"></ul>
-          <aside
-            id="popular-rail"
-            class="popular-rail"
-            aria-labelledby="popular-heading"
-            hidden
-          >
-            <h2 id="popular-heading" class="popular-heading">
-              Popular in style
-            </h2>
-            <p class="popular-disclaimer">
-              Curated catalog picks in your style—not live purchase data.
-            </p>
-            <ul id="popular-list" class="popular-list"></ul>
-          </aside>
         </div>
+        <aside
+          id="popular-rail"
+          class="popular-rail"
+          aria-labelledby="popular-heading"
+          hidden
+        >
+          <h2 id="popular-heading" class="popular-heading">Popular in style</h2>
+          <p class="popular-disclaimer">
+            Curated catalog picks in your style—not live purchase data.
+          </p>
+          <ul id="popular-list" class="popular-list"></ul>
+        </aside>
 
         <section
           id="compare-panel"
@@ -282,6 +280,7 @@
       function hideComparePanel() {
         comparePanel.hidden = true;
         layout.hidden = false;
+        if (popularList.children.length) popularRail.hidden = false;
         document.body.classList.remove("compare-mode");
       }
 
@@ -358,6 +357,7 @@
         ].join("");
 
         layout.hidden = true;
+        popularRail.hidden = true;
         comparePanel.hidden = false;
         document.body.classList.add("compare-mode");
         comparePanel.scrollIntoView({ behavior: "smooth", block: "start" });
