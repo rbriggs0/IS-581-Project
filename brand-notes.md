@@ -138,6 +138,12 @@ Turn usage data into pitch material; draft the roadmap slide for won’t-haves (
 - **Out of slice:** Popular in Style rail, compare mode
 - **Next:** Feedback Slice B (Popular in Style)
 
+### Feedback Slice B — Popular in Style rail (implemented)
+
+- **What shipped:** `getPopularInStyle` picks up to 5 catalog guitars in the quiz style (prefer same type, then lowest `approxPrice`), excluding current match IDs. Results aside titled “Popular in [Style]” with honesty disclaimer—not live purchases. Desktop sidebar; stacks below matches on smaller screens.
+- **Out of slice:** compare mode; fake timestamps / “buyers purchased” copy
+- **Next:** Feedback Slice C (compare mode)
+
 ### Engineering controls + Tech Employee Playbook
 
 - **What shipped:** ESLint 10 (with inline HTML scripts), Prettier 3, EditorConfig, Husky + lint-staged pre-commit, `node:test` suites for matching logic and catalog data (98 tests, 80% coverage floor), GitHub Actions CI (lint, format, tests, `npm audit`, gitleaks), CodeQL, live-site smoke test, Dependabot, PR/issue templates, CODEOWNERS, SECURITY.md, Cursor project rules
