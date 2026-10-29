@@ -51,7 +51,8 @@ export function gearSpecRows(item) {
     electronics: "Electronics",
     notable: "Notable",
   };
-  return order
-    .filter((key) => specs[key])
-    .map((key) => ({ label: labels[key] || key, value: String(specs[key]) }));
+  return order.map((key) => ({
+    label: labels[key] || key,
+    value: specs[key] ? String(specs[key]) : "—",
+  }));
 }

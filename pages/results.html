@@ -372,11 +372,14 @@
               `~${formatBudget(item.approxPrice)}`,
             ];
             if (handNote) metaParts.push(escapeHtml(handNote));
-            let badge = "";
+            let badgeClass = "result-badge";
+            let badgeText = "";
             if (artist && signatureIds && signatureIds.has(item.id)) {
-              badge = `<p class="result-signature">${escapeHtml(artist.name)} signature / signed line</p>`;
+              badgeClass = "result-badge result-signature";
+              badgeText = `${artist.name} signature / signed line`;
             } else if (artist && inspiredIds && inspiredIds.has(item.id)) {
-              badge = `<p class="result-inspired">Because you selected ${escapeHtml(artist.name)}</p>`;
+              badgeClass = "result-badge result-inspired";
+              badgeText = `Because you selected ${artist.name}`;
             }
             const visual = item.visual || item.type || "electric";
             const checked = selectedIds.includes(item.id) ? " checked" : "";
@@ -385,18 +388,16 @@
           <div class="result-media${item.image ? " result-media-photo" : ""}" data-visual="${escapeHtml(visual)}">
             ${mediaHtml(item, "result-photo", 160, 200)}
           </div>
-          <div class="result-content">
-            <p class="result-brand">${escapeHtml(item.brand)}</p>
-            <h2 class="result-name">${escapeHtml(item.name)}</h2>
-            <p class="result-meta">${metaParts.join(" · ")}</p>
-            ${badge}
-            <p class="result-blurb">${escapeHtml(item.blurb)}</p>
-            ${renderSpecs(item)}
-            <label class="compare-toggle">
-              <input type="checkbox" value="${escapeHtml(item.id)}"${checked}>
-              <span>Compare</span>
-            </label>
-          </div>
+          <p class="result-brand">${escapeHtml(item.brand)}</p>
+          <h2 class="result-name">${escapeHtml(item.name)}</h2>
+          <p class="result-meta">${metaParts.join(" · ")}</p>
+          <p class="${badgeClass}">${escapeHtml(badgeText)}</p>
+          <p class="result-blurb">${escapeHtml(item.blurb)}</p>
+          ${renderSpecs(item)}
+          <label class="compare-toggle">
+            <input type="checkbox" value="${escapeHtml(item.id)}"${checked}>
+            <span>Compare</span>
+          </label>
         </li>`;
           })
           .join("");
