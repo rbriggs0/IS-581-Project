@@ -157,6 +157,24 @@ Turn usage data into pitch material; draft the roadmap slide for won’t-haves (
 - **Cleanup:** removed unused `sortLevelPreferred` / `sortArtistPreferred`; one-time Prettier format of the codebase (no visual change verified on quiz and results)
 - **Manual GitHub settings:** branch protection on `main`, Projects Kanban board, labels, secret scanning push protection
 
+### Maturity — Observability (frontend errors + smoke alerts)
+
+- **What shipped:** `js/errors.js` banner on quiz/results for uncaught errors; smoke workflow files/comments a SEV1 GitHub issue on failure; `docs/RUNBOOK-smoke.md` + SLO note in the playbook
+- **Why:** Maturity-model questionnaire first gap — know when the live product is broken before users report it
+- **Out of slice:** third-party APM / error SaaS
+
+### Maturity — Testing (Playwright E2E)
+
+- **What shipped:** `@playwright/test` happy-path quiz→results, Popular-below layout assertion, XSS query-param hardening case, CSP meta assertion; `npm run test:e2e` + CI job
+- **Why:** Unit tests never click the quiz or inspect layout; browser E2E closes that gap
+- **Out of slice:** multi-browser matrix beyond Chromium
+
+### Maturity — Security (CSP + shared sanitize)
+
+- **What shipped:** `js/sanitize.js` shared `escapeHtml`; CSP / Referrer / Permissions-Policy meta on HTML pages; smoke asserts CSP on `/` and quiz; SECURITY.md updated
+- **Why:** Static sites still face XSS via injected HTML; policy + shared escaping mature security without a backend
+- **Out of slice:** HTTP-only security headers (GitHub Pages limitation), removing `'unsafe-inline'` (needs script extraction / nonces)
+
 ## Working agreements (how we build)
 
 FindYourSound-specific rules adapted from vibe-coding best practices. Follow these whenever prompting or shipping a slice.

@@ -3,6 +3,15 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      http-equiv="Content-Security-Policy"
+      content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data:; connect-src 'self'; base-uri 'self'; form-action 'self'; object-src 'none'"
+    />
+    <meta name="referrer" content="strict-origin-when-cross-origin" />
+    <meta
+      http-equiv="Permissions-Policy"
+      content="camera=(), microphone=(), geolocation=()"
+    />
     <title>Your matches — FindYourSound</title>
     <meta
       name="description"
@@ -121,6 +130,8 @@
     </div>
 
     <script type="module">
+      import { installErrorReporting } from "../js/errors.js";
+      import { escapeHtml } from "../js/sanitize.js";
       import {
         getMatchResult,
         getPopularInStyle,
@@ -138,6 +149,8 @@
         BUDGET_MAX,
       } from "../js/match.js";
       import { gearVisualSvg, gearSpecRows } from "../js/visuals.js";
+
+      installErrorReporting();
 
       const params = new URLSearchParams(window.location.search);
       const style = (params.get("style") || "").toLowerCase();
@@ -188,14 +201,6 @@
       let matchesById = new Map();
       /** @type {string[]} */
       let selectedIds = [];
-
-      function escapeHtml(value) {
-        return String(value)
-          .replaceAll("&", "&amp;")
-          .replaceAll("<", "&lt;")
-          .replaceAll(">", "&gt;")
-          .replaceAll('"', "&quot;");
-      }
 
       function renderSpecs(item) {
         const rows = gearSpecRows(item);

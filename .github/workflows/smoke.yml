@@ -8,6 +8,7 @@ on:
 
 permissions:
   contents: read
+  issues: write
 
 jobs:
   smoke:
@@ -23,7 +24,7 @@ jobs:
           set -e
           for path in / /pages/quiz.html /pages/results.html \
                       /data/gear.json /data/gear-extras.json /data/artists.json \
-                      /js/match.js /styles.css; do
+                      /js/match.js /js/errors.js /js/sanitize.js /styles.css; do
             code=$(curl -s -o /dev/null -w "%{http_code}" "$SITE$path")
             echo "$code $path"
             test "$code" = "200"
@@ -34,3 +35,47 @@ jobs:
           count=$(curl -s "$SITE/data/gear.json" | jq 'length')
           echo "gear count: $count"
           test "$count" -ge 27
+
+      - name: Security meta tags present on home and quiz
+        run: |
+          set -e
+          for path in / /pages/quiz.html; do
+            html=$(curl -s "$SITE$path")
+            echo "$html" | grep -q 'http-equiv="Content-Security-Policy"'
+            echo "$html" | grep -q 'name="referrer"'
+            echo "$html" | grep -q 'http-equiv="Permissions-Policy"'
+            echo "ok $path"
+          done
+
+      - name: Open or update smoke-failure issue
+        if: failure()
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          set -euo pipefail
+          RUN_URL="${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}"
+          WHEN="$(date -u +"%Y-%m-%d %H:%M UTC")"
+          BODY="## Live site smoke test failed
+
+          The automated smoke workflow failed. Treat this as a SEV1 until the live site is confirmed healthy.
+
+          - **Run:** ${RUN_URL}
+          - **Site:** ${SITE}
+          - **When:** ${WHEN}
+
+          Follow https://github.com/${{ github.repository }}/blob/main/docs/RUNBOOK-smoke.md"
+
+          EXISTING=$(gh issue list --repo "${{ github.repository }}" \
+            --search 'in:title "SEV1: Live site smoke test failed" is:open' \
+            --json number --jq '.[0].number // empty' || true)
+          if [ -n "${EXISTING}" ]; then
+            gh issue comment "${EXISTING}" --repo "${{ github.repository }}" --body "${BODY}"
+          else
+            gh issue create --repo "${{ github.repository }}" \
+              --title "SEV1: Live site smoke test failed" \
+              --body "${BODY}" \
+              --label "smoke-failure" \
+            || gh issue create --repo "${{ github.repository }}" \
+              --title "SEV1: Live site smoke test failed" \
+              --body "${BODY}"
+          fi

@@ -438,9 +438,17 @@ We use **`node:test`** with **`node:assert/strict`**, both built into Node.js 22
 - Test against the real catalog through `tests/helpers.js`, so data changes that break matching are caught.
 - Assert behavior users would notice (order, counts, messages), not private implementation details.
 
+### Frontend error reporting
+
+`js/errors.js` installs `error` and `unhandledrejection` listeners on the quiz and results pages. Failures show a dismissible on-page banner (no third-party SDK, no PII). Details go to `console.error` only.
+
 ### Automated live-site smoke test
 
-`.github/workflows/smoke.yml` runs after every GitHub Pages build, daily at 14:00 UTC, and on demand. It checks that the home page, quiz, results, all three JSON files, `match.js`, and `styles.css` return HTTP 200, and that `gear.json` still has at least 27 guitars.
+`.github/workflows/smoke.yml` runs after every GitHub Pages build, daily at 14:00 UTC, and on demand. It checks that the home page, quiz, results, all three JSON files, `match.js`, `errors.js`, and `styles.css` return HTTP 200, and that `gear.json` still has at least 27 guitars.
+
+**SLO:** those key URLs return HTTP 200 within about two minutes after a successful `main` deploy.
+
+**Alerting:** if the smoke job fails, the workflow opens or comments on a GitHub issue titled `SEV1: Live site smoke test failed` (label `smoke-failure` when available). Follow [`docs/RUNBOOK-smoke.md`](RUNBOOK-smoke.md).
 
 ### Manual smoke checklist (before moving a card to Done)
 
@@ -452,9 +460,18 @@ On the live site, after a hard refresh:
 4. Blues → Electric → any → John Mayer → $0–$1,000: PRS SE Silver Sky appears; core Silver Sky does not.
 5. Budget dial: dragging either handle moves the brown active range and updates the dollar readout.
 
-### Planned next
+### Browser end-to-end tests (Playwright)
 
-Browser end-to-end tests with **Playwright** for the quiz-to-results flow once the UI adds more pages.
+Playwright covers the quiz → results path in a real Chromium browser (`e2e/quiz-results.spec.js`): happy-path matches, Popular section below the grid, odd query params do not inject raw HTML, and CSP meta tags are present.
+
+| Command               | When                                 |
+| --------------------- | ------------------------------------ |
+| `npm run test:e2e`    | Locally before a PR; also runs in CI |
+| `npm run test:e2e:ui` | Interactive debug UI                 |
+
+### Browser security policies
+
+HTML pages ship `Content-Security-Policy`, `Referrer-Policy`, and `Permissions-Policy` meta tags. Dynamic results markup uses shared `escapeHtml` from `js/sanitize.js`.
 
 ## 9. Other Controls, Tools, and Procedures
 
@@ -484,10 +501,11 @@ Browser end-to-end tests with **Playwright** for the quiz-to-results flow once t
 
 - **On-call:** the repo owner by default. With multiple developers, rotate weekly every Monday and post the name in the team chat.
 - **Check first:** is GitHub itself down? https://www.githubstatus.com/
+- **Smoke SEV1:** use [`docs/RUNBOOK-smoke.md`](RUNBOOK-smoke.md) when the live smoke workflow files an issue.
 - **Steps:**
   1. Confirm the problem on the live site and note the URL and steps.
   2. If a recent merge caused it, **revert first** (PR with `git revert`), then investigate.
-  3. Open a Bug report issue with the right severity.
+  3. Open a Bug report issue with the right severity (or use the auto-filed smoke issue).
   4. Fix forward on a `fix/` branch with a regression test.
   5. Add a short post-incident note to `brand-notes.md`: what happened, impact, fix, and prevention.
 
