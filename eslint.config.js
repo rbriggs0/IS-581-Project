@@ -29,7 +29,12 @@ export default [
     },
   },
   {
-    files: ["tests/**/*.js", "*.config.js"],
+    files: [
+      "tests/**/*.js",
+      "e2e/**/*.js",
+      "*.config.js",
+      "playwright.config.js",
+    ],
     languageOptions: {
       ecmaVersion: 2022,
       sourceType: "module",

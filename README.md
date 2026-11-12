@@ -29,7 +29,8 @@ Opening the HTML files directly (`file://`) will not work: the pages load JSON w
 | `npm run format:check`  | Prettier check (what CI runs)                  |
 | `npm test`              | `node --test` unit and data-integrity tests    |
 | `npm run test:coverage` | Tests with an 80% line-coverage floor on `js/` |
-| `npm run check`         | Lint + format check + tests (run before PR)    |
+| `npm run test:e2e`      | Playwright quiz→results browser tests          |
+| `npm run check`         | Lint + format check + unit/data tests          |
 
 ## Project layout
 

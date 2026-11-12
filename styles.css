@@ -901,6 +901,48 @@ em {
   margin-top: var(--space-md);
 }
 
+/* Frontend error banner (observability) */
+
+.error-banner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-sm);
+  margin: 0;
+  padding: var(--space-sm) var(--space-md);
+  background: #3b1f1a;
+  color: #f7f3eb;
+  border-bottom: 3px solid var(--wood);
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  line-height: 1.4;
+  z-index: 1000;
+}
+
+.error-banner-text {
+  margin: 0;
+  flex: 1;
+  min-width: 0;
+}
+
+.error-banner-dismiss {
+  flex-shrink: 0;
+  margin: 0;
+  padding: 0.35rem 0.75rem;
+  border: 1px solid rgba(247, 243, 235, 0.45);
+  background: transparent;
+  color: inherit;
+  font: inherit;
+  cursor: pointer;
+}
+
+.error-banner-dismiss:hover,
+.error-banner-dismiss:focus-visible {
+  background: rgba(247, 243, 235, 0.12);
+  outline: 2px solid var(--amber);
+  outline-offset: 2px;
+}
+
 /* Results (Slice 1) */
 
 .results-page .site-header {

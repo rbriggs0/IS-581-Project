@@ -36,6 +36,26 @@ jobs:
       - name: Dependency audit (fail on high/critical)
         run: npm audit --audit-level=high
 
+  e2e:
+    name: Playwright E2E
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v7
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Install dev tools
+        run: npm ci
+
+      - name: Install Playwright Chromium
+        run: npx playwright install --with-deps chromium
+
+      - name: Run E2E tests
+        run: npm run test:e2e
+
   secrets:
     name: Secret scan (gitleaks)
     runs-on: ubuntu-latest

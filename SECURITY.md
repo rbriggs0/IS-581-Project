@@ -11,7 +11,10 @@ You can expect an acknowledgement within 2 business days and a fix or mitigation
 ## Controls in place
 
 - ESLint security-relevant rules (`no-eval`, `no-implied-eval`, `no-new-func`)
-- All dynamic HTML in `pages/results.html` passes through `escapeHtml`
+- Shared `escapeHtml` in `js/sanitize.js` for all dynamic HTML in `pages/results.html`
+- Content-Security-Policy, Referrer-Policy, and Permissions-Policy meta tags on HTML pages (self + Google Fonts; camera/mic/geo locked off)
+- Live smoke test asserts CSP meta is present on `/` and `/pages/quiz.html`
 - CodeQL analysis on every PR and weekly (`.github/workflows/codeql.yml`)
 - gitleaks secret scan on every PR (`.github/workflows/ci.yml`)
 - `npm audit` gate and weekly Dependabot updates
+- Frontend error banner (`js/errors.js`) with no third-party telemetry SDK
